@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  androboss:
+    build: .
+    container_name: androboss
+    volumes:
+      - ./db.sqlite3:/app/db.sqlite3
+      - media_volume:/app/media
+    env_file:
+      - .env
+    networks:
+      - samsebweb_app-network
+    restart: unless-stopped
+
+volumes:
+  media_volume:
+
+networks:
+  samsebweb_app-network:
+    external: true

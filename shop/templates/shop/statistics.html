@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Statistika — AndroBoss Admin</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f4f6f8; color: #2c3e50; }
+.header {
+  background: linear-gradient(135deg, #1a1a2e, #2d2680);
+  color: #fff;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header h1 { font-size: 20px; }
+.header a { color: #f1c40f; text-decoration: none; font-size: 13px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+
+/* --- CARDS --- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  text-align: center;
+  border-top: 4px solid #e74c3c;
+}
+.card.blue { border-top-color: #3498db; }
+.card.green { border-top-color: #27ae60; }
+.card.orange { border-top-color: #e67e22; }
+.card.purple { border-top-color: #9b59b6; }
+.card-num {
+  font-size: 36px;
+  font-weight: 900;
+  color: #1a1a2e;
+  line-height: 1;
+}
+.card-lbl {
+  font-size: 13px;
+  color: #888;
+  margin-top: 6px;
+}
+
+/* --- SECTION TITLE --- */
+.section-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: #1a1a2e;
+  border-left: 4px solid #e74c3c;
+  padding-left: 10px;
+}
+
+/* --- TABLE --- */
+.table-wrap {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+thead th {
+  background: #1a1a2e;
+  color: #f1c40f;
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+tbody tr:nth-child(even) { background: #f9f9f9; }
+tbody td {
+  padding: 11px 14px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+tbody tr:hover { background: #fff5f5; }
+
+/* --- BADGE --- */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.badge-new    { background: #d6eaf8; color: #2980b9; }
+.badge-called { background: #fdebd0; color: #e67e22; }
+.badge-confirmed { background: #d5f5e3; color: #27ae60; }
+.badge-cancelled { background: #fadbd8; color: #e74c3c; }
+
+/* --- VISITOR TABLE --- */
+.visitor-bar-wrap { display: flex; align-items: center; gap: 10px; }
+.visitor-bar-bg {
+  flex: 1;
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.visitor-bar-fill {
+  height: 100%;
+  background: linear-gradient(to right, #e74c3c, #c0392b);
+  border-radius: 4px;
+}
+.visitor-count { font-weight: 700; color: #e74c3c; min-width: 30px; }
+
+@media (max-width: 600px) {
+  table { font-size: 12px; }
+  thead th, tbody td { padding: 9px 8px; }
+  .card-num { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📊 AndroBoss — Statistika</h1>
+  <div>
+    <a href="/admin/">Admin panel</a> &nbsp;|&nbsp;
+    <a href="/">Saytga qaytish</a>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- TASHRIF KARTOCHKALARI -->
+  <p class="section-title">👁 Tashriflar</p>
+  <div class="cards">
+    <div class="card blue">
+      <div class="card-num">{{ total_visitors_today }}</div>
+      <div class="card-lbl">Bugun</div>
+    </div>
+    <div class="card">
+      <div class="card-num">{{ total_visitors_week }}</div>
+      <div class="card-lbl">So'nggi 7 kun</div>
+    </div>
+    <div class="card orange">
+      <div class="card-num">{{ total_visitors_month }}</div>
+      <div class="card-lbl">So'nggi 30 kun</div>
+    </div>
+  </div>
+
+  <!-- BUYURTMA KARTOCHKALARI -->
+  <p class="section-title">🛒 Buyurtmalar</p>
+  <div class="cards">
+    <div class="card blue">
+      <div class="card-num">{{ orders_today }}</div>
+      <div class="card-lbl">Bugun</div>
+    </div>
+    <div class="card green">
+      <div class="card-num">{{ orders_week }}</div>
+      <div class="card-lbl">So'nggi 7 kun</div>
+    </div>
+    <div class="card orange">
+      <div class="card-num">{{ orders_month }}</div>
+      <div class="card-lbl">So'nggi 30 kun</div>
+    </div>
+    <div class="card purple">
+      <div class="card-num">{{ orders_total }}</div>
+      <div class="card-lbl">Jami</div>
+    </div>
+  </div>
+
+  <!-- KUNLIK TASHRIFLAR JADVALI -->
+  <p class="section-title">📅 Kunlik tashriflar (so'nggi 30 kun)</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Sana</th>
+          <th>Tashriflar</th>
+          <th style="width:50%">Graf</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if visitor_stats %}
+          {% for stat in visitor_stats %}
+          <tr>
+            <td>{{ stat.date|date:"d.m.Y" }}</td>
+            <td><b>{{ stat.count }}</b></td>
+            <td>
+              <div class="visitor-bar-wrap">
+                <div class="visitor-bar-bg">
+                  <div class="visitor-bar-fill" style="width:{{ stat.count|floatformat:0 }}px; max-width:100%;"></div>
+                </div>
+                <span class="visitor-count">{{ stat.count }}</span>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        {% else %}
+          <tr><td colspan="3" style="text-align:center;color:#aaa;padding:20px;">Hali ma'lumot yo'q</td></tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SO'NGGI BUYURTMALAR -->
+  <p class="section-title">📋 So'nggi buyurtmalar</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Ism</th>
+          <th>Telefon</th>
+          <th>Chegirma</th>
+          <th>Holat</th>
+          <th>Sana</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if recent_orders %}
+          {% for order in recent_orders %}
+          <tr>
+            <td>{{ order.id }}</td>
+            <td><b>{{ order.name }}</b></td>
+            <td>{{ order.phone }}</td>
+            <td style="color:#e74c3c;font-weight:700;">{{ order.discount }}%</td>
+            <td>
+              {% if order.status == 'new' %}
+                <span class="badge badge-new">Yangi</span>
+              {% elif order.status == 'called' %}
+                <span class="badge badge-called">Qo'ng'iroq qilindi</span>
+              {% elif order.status == 'confirmed' %}
+                <span class="badge badge-confirmed">Tasdiqlandi</span>
+              {% else %}
+                <span class="badge badge-cancelled">Bekor qilindi</span>
+              {% endif %}
+            </td>
+            <td style="color:#888;font-size:12px;">{{ order.created_at|date:"d.m.Y H:i" }}</td>
+          </tr>
+          {% endfor %}
+        {% else %}
+          <tr><td colspan="6" style="text-align:center;color:#aaa;padding:20px;">Hali buyurtma yo'q</td></tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>

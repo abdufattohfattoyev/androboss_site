@@ -1,0 +1,993 @@
+/* ============================================================
+   MAXSIPEN — TO'LIQ RESPONSIVE CSS
+   ============================================================ */
+
+/* ---- RESET ---- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html { scroll-behavior: smooth; }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background: #f5f5f5;
+    overflow-x: hidden;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+/* Review avatar — global img qoidasidan himoya */
+img.review-avatar {
+    width: 54px !important;
+    height: 54px !important;
+    min-width: 54px !important;
+    max-width: 54px !important;
+    min-height: 54px !important;
+    max-height: 54px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    display: inline-block !important;
+    flex-shrink: 0 !important;
+    border: 2.5px solid #e2e8f0 !important;
+    background-color: #dde3ea !important;
+    overflow: hidden !important;
+}
+a { text-decoration: none; color: inherit; }
+ul, ol { padding-left: 22px; }
+
+/* ============================================================
+   FLOATING ORDER BUTTON
+   ============================================================ */
+.bottom_btn {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 99999;
+    width: 100%;
+    padding: 14px 20px;
+    background: #c0392b;
+    color: #fff !important;
+    text-align: center;
+    font-weight: bold;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    display: block;
+    text-decoration: none !important;
+    box-shadow: 0 -3px 12px rgba(0,0,0,0.25);
+    transition: background 0.2s;
+}
+.bottom_btn:hover { background: #a93226; }
+
+/* ============================================================
+   WRAPPER
+   ============================================================ */
+.all {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+}
+
+/* ============================================================
+   TOP BANNER (b_top)
+   ============================================================ */
+.b_top {
+    background: #1a1a2e;
+    height: 6px;
+}
+
+/* ============================================================
+   HEADER (.top)
+   ============================================================ */
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 20px;
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+/* Logo */
+a.logo img {
+    max-width: 140px;
+    height: auto;
+}
+.clear500 { display: none; }
+.clear { clear: both; }
+
+/* Top icons wrapper */
+.top_icons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* Social icons (YouTube, Facebook, VK, Twitter) */
+.top_ico2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.top_ico2 a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    overflow: hidden;
+    transition: transform 0.2s, background 0.2s;
+}
+.top_ico2 a:hover {
+    transform: scale(1.1);
+    background: #e0e0e0;
+}
+.top_ico2 a img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+/* Top nav (Обращения граждан, Карта сайта, Поиск) */
+.top_ico {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.top_ico a {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: #555;
+    transition: color 0.2s;
+}
+.top_ico a:hover { color: #c0392b; }
+.top_ico a img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+/* ============================================================
+   NAVIGATION MENU
+   ============================================================ */
+.menu_line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2px;
+    padding: 0 12px;
+    background: #2c3e50;
+    border-bottom: 3px solid #c0392b;
+}
+.menu_line_item a {
+    display: inline-block;
+    padding: 11px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #ecf0f1;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+}
+.menu_line_item a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border-bottom-color: #e74c3c;
+}
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+.main { padding-bottom: 70px; }
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.contentBox { padding: 0; }
+
+h1.myhead1 {
+    font-size: 22px;
+    line-height: 1.4;
+    color: #1a1a2e;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 24px 28px;
+    border-left: 5px solid #c0392b;
+    margin: 0;
+}
+h1.myhead1 span {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* Doctor image */
+.contentBox > div:first-child > div img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: cover;
+    object-position: top;
+}
+
+/* ============================================================
+   INTERVIEW CONTENT
+   ============================================================ */
+.contentBox > div:nth-child(2) {
+    padding: 20px 24px;
+}
+.contentBox > div:nth-child(2) p {
+    margin-bottom: 14px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #333;
+}
+.contentBox > div:nth-child(2) h3 {
+    font-size: 18px;
+    color: #1a1a2e;
+    margin: 22px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #e74c3c;
+}
+
+/* Doktor foto + izoh */
+p.moderation {
+    text-align: center;
+    margin: 16px 0;
+}
+p.moderation img {
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    max-width: 300px;
+}
+
+/* Moderation bloklar */
+div.moderation {
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-left: 4px solid #f39c12;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 18px 0;
+}
+div.moderation .block-4 {
+    font-size: 15px;
+    color: #5d4037;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+div.moderation p {
+    margin: 8px 0 0 !important;
+}
+div.moderation img {
+    margin: 10px auto;
+    border-radius: 6px;
+    max-width: 100%;
+}
+
+/* Block-4 (standalone) */
+div.block-4 {
+    background: #fff3cd;
+    border-left: 4px solid #e67e22;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin: 16px 0;
+    font-weight: 600;
+    color: #5d4037;
+}
+
+/* Product image (center) */
+center img[src*="product"] {
+    max-width: 320px;
+    width: 100%;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+center { text-align: center; }
+
+/* Benefits list (ol) */
+.contentBox ol {
+    background: #f0faf0;
+    border: 1px solid #a8d5a2;
+    border-radius: 8px;
+    padding: 18px 18px 18px 38px;
+    margin: 16px 0;
+}
+.contentBox ol li {
+    font-size: 15px;
+    color: #2e7d32;
+    padding: 5px 0;
+    line-height: 1.6;
+}
+.contentBox ol li::marker { color: #27ae60; font-weight: bold; }
+
+/* Order conditions (pg) */
+div.pg {
+    background: #fff9e6 !important;
+    border: 2px solid #e74c3c !important;
+    border-radius: 10px;
+    padding: 20px 24px !important;
+    margin: 20px 0;
+}
+div.pg h3 {
+    font-size: 17px;
+    color: #c0392b;
+    margin-bottom: 12px;
+    border-bottom: none !important;
+}
+div.pg ul {
+    list-style: none;
+    padding: 0;
+}
+div.pg ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid #fce4b3;
+    font-size: 15px;
+}
+div.pg ul li:last-child { border-bottom: none; }
+div.pg ul li b { color: #1a1a2e; }
+div.pg ul li span { color: #777; font-size: 13px; }
+
+/* ============================================================
+   DOORS GAME SECTION — to'liq responsive
+   ============================================================ */
+/* ============================================================
+   DOORS GAME SECTION — zo'r dizayn
+   ============================================================ */
+#doors_block {
+    padding: 28px 16px 32px;
+    background: linear-gradient(160deg, #0f0c29, #1a1a3e, #24243e);
+    margin: 24px 0;
+    border-radius: 16px;
+    font-family: "Roboto", Arial, sans-serif;
+    box-shadow:
+        0 8px 32px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+    position: relative;
+    overflow: hidden;
+}
+/* Fon yulduzcha effekti */
+#doors_block::before {
+    content: '';
+    position: absolute;
+    top: -40%; left: -20%;
+    width: 140%; height: 200%;
+    background: radial-gradient(ellipse at 60% 40%, rgba(231,76,60,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(52,152,219,0.10) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Sarlavha */
+.door__title {
+    text-align: center;
+    color: #f1c40f;
+    font-size: clamp(14px, 4vw, 22px);
+    font-weight: 900;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(241,196,15,0.3);
+    text-shadow:
+        0 0 10px rgba(241,196,15,0.6),
+        0 2px 4px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+/* Eshiklar qatori */
+.door__container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 0 8px;
+}
+
+/* Har bir eshik bloki */
+.box {
+    flex: 1 1 0;
+    max-width: 200px;
+    min-width: 70px;
+    position: relative;
+    cursor: pointer;
+    aspect-ratio: 1 / 2.1;
+    border-radius: 6px 6px 4px 4px;
+    transition: filter 0.2s;
+}
+.box:hover .door:not([style*="rotateY(-85"]) {
+    transform: rotateY(-22deg);
+    filter: brightness(1.1);
+}
+
+/* Eshik orqasidagi chegirma */
+.hi {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+    gap: 8px;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 70%);
+}
+.door__sales {
+    font-size: clamp(40px, 13vw, 68px);
+    font-weight: 900;
+    color: #e74c3c;
+    text-align: center;
+    background: rgba(255,255,255,0.97);
+    border-radius: 12px;
+    padding: 10px 12px;
+    box-shadow:
+        0 4px 18px rgba(0,0,0,0.3),
+        0 0 0 3px transparent;
+    transition: color 0.3s, box-shadow 0.3s, transform 0.2s;
+    line-height: 1;
+    min-width: 0;
+    width: 70%;
+}
+
+/* ============================================================
+   REAL ESHIK — minimalist, haqiqiy eshikka o'xshash
+   ============================================================ */
+
+/* ESHIK ASOSI */
+.door {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    transform: rotateY(0deg);
+    transform-origin: 0% 50%;
+    transition: transform 0.8s cubic-bezier(0.4,0,0.2,1);
+    z-index: 1;
+    will-change: transform;
+    backface-visibility: hidden;
+    border-radius: 2px 4px 4px 2px;
+    overflow: hidden;
+}
+
+/* Har bir eshik rangi va teksturasi */
+#door__1 {
+    background:
+        /* Ko'k-oq shimmer yuqoridan */
+        linear-gradient(110deg, rgba(180,220,255,0.18) 0%, transparent 45%),
+        /* Yog'och chiziqlari */
+        repeating-linear-gradient(92deg,
+            transparent 0px, transparent 6px,
+            rgba(0,0,0,0.03) 6px, rgba(0,0,0,0.03) 7px),
+        linear-gradient(178deg, #5a2e1e 0%, #3e1a0c 45%, #2a0f06 100%);
+    box-shadow:
+        inset -6px 0 14px rgba(0,0,0,0.6),
+        inset 3px 3px 10px rgba(180,220,255,0.12),
+        4px 0 20px rgba(0,0,0,0.6);
+}
+#door__2 {
+    background:
+        linear-gradient(110deg, rgba(200,235,255,0.22) 0%, transparent 40%),
+        repeating-linear-gradient(92deg,
+            transparent 0px, transparent 8px,
+            rgba(0,0,0,0.025) 8px, rgba(0,0,0,0.025) 9px),
+        linear-gradient(178deg, #b89050 0%, #8a6428 45%, #5e4010 100%);
+    box-shadow:
+        inset -6px 0 14px rgba(0,0,0,0.5),
+        inset 3px 3px 10px rgba(200,235,255,0.15),
+        4px 0 20px rgba(0,0,0,0.5);
+}
+#door__3 {
+    background:
+        linear-gradient(110deg, rgba(220,240,255,0.35) 0%, transparent 45%),
+        repeating-linear-gradient(92deg,
+            transparent 0px, transparent 10px,
+            rgba(0,0,0,0.018) 10px, rgba(0,0,0,0.018) 11px),
+        linear-gradient(178deg, #ddd5c8 0%, #c4b8a8 45%, #a89880 100%);
+    box-shadow:
+        inset -6px 0 14px rgba(0,0,0,0.3),
+        inset 3px 3px 10px rgba(220,240,255,0.3),
+        4px 0 20px rgba(0,0,0,0.35);
+}
+
+/* PANEL (ichki chuqur panel) */
+.dp {
+    position: absolute;
+    left: 12%;
+    width: 76%;
+    border-radius: 3px;
+    pointer-events: none;
+}
+.dp-t { top: 6%; height: 38%; }
+.dp-b { top: 50%; height: 42%; }
+
+/* Har bir eshik uchun panel rang */
+#door__1 .dp {
+    background: rgba(0,0,0,0.18);
+    box-shadow:
+        inset 2px 2px 5px rgba(0,0,0,0.45),
+        inset -2px -2px 5px rgba(255,150,80,0.08),
+        1px 1px 0 rgba(255,150,80,0.1);
+}
+#door__2 .dp {
+    background: rgba(0,0,0,0.12);
+    box-shadow:
+        inset 2px 2px 5px rgba(0,0,0,0.35),
+        inset -2px -2px 5px rgba(255,220,140,0.12),
+        1px 1px 0 rgba(255,220,140,0.15);
+}
+#door__3 .dp {
+    background: rgba(0,0,0,0.06);
+    box-shadow:
+        inset 2px 2px 4px rgba(0,0,0,0.2),
+        inset -2px -2px 4px rgba(255,255,255,0.5),
+        1px 1px 0 rgba(255,255,255,0.6);
+}
+
+/* TUTQICH (door knob) */
+.dk {
+    position: absolute;
+    right: 13%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(10px, 3vw, 16px);
+    height: clamp(10px, 3vw, 16px);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+}
+#door__1 .dk {
+    background: radial-gradient(circle at 35% 35%, #e8eef2, #a0b0bc 55%, #607080);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.7), inset 0 1px 3px rgba(255,255,255,0.6);
+}
+#door__2 .dk {
+    background: radial-gradient(circle at 35% 35%, #e8eef2, #9aaab8 55%, #5a6a78);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.6), inset 0 1px 3px rgba(255,255,255,0.6);
+}
+#door__3 .dk {
+    background: radial-gradient(circle at 35% 35%, #f0f4f8, #b0bec8 55%, #708090);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4), inset 0 1px 3px rgba(255,255,255,0.7);
+}
+
+.door.open { transform: rotateY(-85deg); }
+
+/* Popup */
+#door-result {
+    display: none;
+    margin-top: 24px;
+    padding: 0 4px;
+}
+#door-result.show {
+    display: block;
+    animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.85) translateY(16px); }
+    to   { opacity: 1; transform: scale(1)    translateY(0);     }
+}
+#door-result .pop-up-window {
+    background: linear-gradient(160deg, #fff 0%, #f9f9f9 100%);
+    border: none;
+    border-radius: 20px;
+    padding: 28px 20px 24px;
+    text-align: center;
+    max-width: 440px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    box-shadow:
+        0 12px 40px rgba(0,0,0,0.35),
+        0 0 0 3px rgba(39,174,96,0.5),
+        inset 0 1px 0 #fff;
+}
+.pop-up-checkmark {
+    width: 68px; height: 68px;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    color: #fff;
+    margin: 0 auto 16px;
+    box-shadow: 0 4px 18px rgba(39,174,96,0.5);
+    animation: checkPop 0.4s 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes checkPop {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+.pop-up-text {
+    font-size: clamp(16px, 4.5vw, 22px);
+    font-weight: 900;
+    color: #1a1a2e;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    letter-spacing: 0.3px;
+}
+.pop-up-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+    color: #fff !important;
+    font-weight: 900;
+    font-size: 16px;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none !important;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 6px 20px rgba(231,76,60,0.5);
+    animation: pulse-btn 1.6s infinite;
+    letter-spacing: 0.5px;
+}
+.pop-up-button:hover {
+    background: linear-gradient(135deg, #a93226, #c0392b);
+    transform: scale(1.05);
+}
+@keyframes pulse-btn {
+    0%,100% { box-shadow: 0 4px 14px rgba(231,76,60,0.4); }
+    50%      { box-shadow: 0 4px 22px rgba(231,76,60,0.7); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #doors_block { padding: 16px 10px; }
+    .door__title { font-size: 15px; padding: 8px 4px; }
+    .door__container { gap: 8px; padding: 0 4px; }
+    .pop-up-text { font-size: 17px; }
+    .pop-up-button { font-size: 14px; padding: 12px 24px; }
+}
+@media (max-width: 380px) {
+    .door__title { font-size: 13px; }
+    .door__sales { font-size: clamp(36px, 11vw, 60px) !important; padding: 8px 10px; }
+}
+
+/* ============================================================
+   EDITORIAL NOTE (rub-ramka)
+   ============================================================ */
+p.rub-ramka {
+    background: rgba(3, 224, 0, 0.04);
+    padding: 14px 18px;
+    border-radius: 4px;
+    border: 3px double rgba(21, 160, 37, 0.35);
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 16px 0;
+    color: #2c3e50;
+}
+p.rub-ramka .myh4 {
+    display: block;
+    font-weight: bold;
+    color: #c0392b;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================================
+   REVIEWS SECTION
+   ============================================================ */
+/* ============================================================
+   SHARHLAR BO'LIMI
+   ============================================================ */
+.commit {
+    padding: 30px 20px 50px;
+    background: #f0f2f5;
+    border-top: 4px solid #e74c3c;
+}
+
+.comTitle {
+    font-size: 21px;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #d1d9e0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.review-count {
+    font-size: 13px;
+    font-weight: 500;
+    color: #6b7280;
+    background: #dde3ea;
+    padding: 3px 11px;
+    border-radius: 30px;
+}
+
+/* Ro'yxat */
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ---- CARD ---- */
+.review-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 16px 18px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07), 0 2px 12px rgba(0,0,0,0.04);
+    border: 1px solid #e5e9ef;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: box-shadow 0.25s, transform 0.2s;
+    overflow: hidden;
+}
+.review-card:hover {
+    box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+    transform: translateY(-1px);
+}
+
+/* ---- HEADER: avatar + ism + yulduz ---- */
+.review-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 11px;
+}
+
+/* Avatar wrapper — doira, rasm ichida qoladi */
+.review-avatar-wrap {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #e2e8f0;
+    background: #dde3ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+/* Avatar rasm — wrap ichida to'ladi */
+.review-avatar-wrap img.review-avatar,
+.commit img.review-avatar,
+img.review-avatar {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: unset !important;
+    max-width: unset !important;
+    min-height: unset !important;
+    max-height: unset !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    object-position: center 20% !important;
+    border: none !important;
+    background-color: #dde3ea !important;
+    flex-shrink: 0 !important;
+}
+
+/* Ism + yulduz */
+.review-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+    flex: 1;
+}
+.review-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.review-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.stars {
+    color: #f59e0b;
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 1;
+}
+.stars-empty { color: #cbd5e1; }
+.review-date {
+    font-size: 11px;
+    color: #94a3b8;
+    margin-left: 2px;
+}
+
+/* ---- MATN ---- */
+.review-text {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #475569;
+    margin: 0;
+    padding-top: 11px;
+    border-top: 1px solid #f1f5f9;
+    word-break: break-word;
+}
+
+/* Images inside reviews (product/promo) */
+.commit img:not(.photo-people):not(.commit-text .photo img) {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    margin: 10px auto;
+    border-radius: 8px;
+    display: block;
+}
+a.scrollto img:not(.photo-people) {
+    max-width: 300px !important;
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 8px;
+    margin: 8px auto;
+    display: block !important;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer_bg {
+    background: #2c3e50;
+    padding: 24px 20px 80px;
+    text-align: center;
+}
+.copyright {
+    display: inline-block;
+    text-align: center;
+}
+.copyright img {
+    max-width: 280px;
+    margin: 0 auto 12px;
+    opacity: 0.85;
+}
+.copyright a {
+    color: #bdc3c7;
+    font-size: 12px;
+    text-decoration: underline;
+}
+.copyright a:hover { color: #fff; }
+
+/* ============================================================
+   CERT IMAGE
+   ============================================================ */
+img[src*="cert"] {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    margin: 16px auto;
+}
+
+/* ============================================================
+   TABLET (max-width: 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+    .top {
+        padding: 10px 14px;
+        gap: 8px;
+    }
+    a.logo img { max-width: 110px; }
+    .top_ico2 a { width: 30px; height: 30px; }
+    .top_ico2 a img { width: 18px; height: 18px; }
+    .top_ico a { font-size: 11px; }
+    .top_ico a img { width: 16px; height: 16px; }
+
+    .menu_line { padding: 0 6px; }
+    .menu_line_item a {
+        padding: 9px 10px;
+        font-size: 12px;
+    }
+
+    h1.myhead1 {
+        font-size: 18px;
+        padding: 16px 16px;
+    }
+
+    .contentBox > div:nth-child(2) { padding: 14px 16px; }
+
+    p.moderation img { max-width: 240px; }
+    center img[src*="product"] { max-width: 260px; }
+
+    .commit { padding: 20px 14px 40px; }
+    .comTitle { font-size: 17px; }
+    .reviews-list { gap: 8px; }
+    .review-card { padding: 13px 14px; }
+}
+
+/* ============================================================
+   MOBILE (max-width: 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+    .top { justify-content: center; }
+    .top_icons { justify-content: center; }
+
+    .menu_line { justify-content: center; gap: 1px; }
+    .menu_line_item a {
+        padding: 7px 7px;
+        font-size: 11px;
+    }
+
+    h1.myhead1 {
+        font-size: 15px;
+        padding: 12px 12px;
+    }
+
+    .contentBox > div:nth-child(2) { padding: 12px 12px; }
+    .contentBox > div:nth-child(2) p { font-size: 14px; }
+
+    p.rub-ramka { font-size: 13px; padding: 10px 12px; }
+
+    .commit { padding: 14px 10px 40px; }
+    .reviews-list { gap: 8px; }
+    .review-card { padding: 12px 12px; }
+    .review-header { gap: 10px; }
+    .review-avatar-wrap {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+    }
+    .review-name { font-size: 14px; }
+    .review-text { font-size: 13px; line-height: 1.65; }
+
+    div.pg { padding: 14px 14px !important; }
+    #doors_block { padding: 16px 12px; }
+    .door__title { font-size: 16px; }
+
+    .bottom_btn { font-size: 14px; padding: 12px 10px; }
+
+    /* Kichik ekranda contentBox to'liq kenglik */
+    .contentBox { padding: 0 !important; }
+    .contentBox > div { padding: 12px 12px !important; }
+    .contentBox p, .contentBox span { font-size: 14px !important; }
+    .contentBox h1, .contentBox h2, .contentBox h3 { font-size: 16px !important; }
+    h1.myhead1 { font-size: 15px !important; padding: 12px !important; }
+
+    /* Rasmlar mobilga sig'sin */
+    img[style*="max-width"] { max-width: 100% !important; width: 100% !important; }
+    p.moderation img { max-width: 100% !important; width: 100% !important; }
+    center img { max-width: 100% !important; width: auto !important; }
+
+    /* Product gallery */
+    .product-gallery { gap: 8px; }
+    .product-gallery img { max-width: calc(50% - 4px); }
+
+    /* Sertifikat grid */
+    .certs-grid { gap: 8px; }
+    .cert-item { max-width: calc(50% - 4px); flex: 0 0 calc(50% - 4px); }
+}
+
+/* ============================================================
+   KICHIK MOBIL (max-width: 360px)
+   ============================================================ */
+@media (max-width: 360px) {
+    .review-avatar-wrap { width: 38px; height: 38px; min-width: 38px; }
+    .review-name { font-size: 13px; }
+    .door__sales { font-size: clamp(34px, 11vw, 58px) !important; }
+    .cert-item { max-width: 100%; flex: 0 0 100%; }
+    .product-gallery img { max-width: 100%; }
+}
+
+/* (doors popup — yuqorida DOORS GAME SECTION da) */

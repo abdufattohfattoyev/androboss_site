@@ -1,0 +1,1474 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="gecko win js" dir="ltr" lang="uz">
+<head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>AndroBoss — Potentsiya uchun kapsulalar</title><link href="{% static 'shop/images/product.png' %}" rel="shortcut icon" type="image/png"/><link href="{% static 'shop/main.css' %}" rel="stylesheet"/><link href="{% static 'shop/doors.css' %}" rel="stylesheet"/>
+<style>
+/* =========================================================
+   ESHIK BLOKI — TO'LIQ OVERRIDE (BARCHA ESKI CSS NI YENGADI)
+   ========================================================= */
+
+/* === CONTAINER === */
+#doors_block {
+  padding: 20px 12px 28px !important;
+  background: #f0f0f0 !important;
+  border-radius: 16px !important;
+  margin: 20px auto !important;
+  max-width: 700px !important;
+  box-sizing: border-box !important;
+}
+
+.door__wrapper {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.door__title {
+  font-size: clamp(14px, 3.5vw, 22px) !important;
+  color: #fff !important;
+  background: linear-gradient(135deg, #1a1a2e, #2d2680) !important;
+  border-radius: 10px !important;
+  padding: 12px 16px !important;
+  text-align: center !important;
+  margin: 0 0 18px !important;
+  line-height: 1.3 !important;
+  font-family: Arial, sans-serif !important;
+}
+
+.door__container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-end !important;
+  gap: 10px !important;
+  perspective: 1200px !important;
+  padding: 0 4px !important;
+}
+
+/* === BOX — ANIQ O'LCHAM === */
+/* Desktop */
+.box {
+  position: relative !important;
+  width: 160px !important;
+  height: 280px !important;
+  flex: 0 0 160px !important;
+  max-width: 160px !important;
+  perspective: 900px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  border-radius: 12px !important;
+  overflow: visible !important;
+}
+
+/* === HI — foiz ko'rsatiluvchi orqa panel === */
+.hi {
+  position: absolute !important;
+  top: 0 !important; left: 0 !important;
+  width: 100% !important; height: 100% !important;
+  transform: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #fff !important;
+  border-radius: 12px !important;
+  border: 3px solid #e0e0e0 !important;
+  box-shadow: inset 0 2px 12px rgba(0,0,0,0.06) !important;
+  z-index: 0 !important;
+  overflow: hidden !important;
+}
+
+/* === FOIZ MATNI — desktop === */
+.door__sales {
+  position: relative !important;
+  top: auto !important; left: auto !important;
+  width: auto !important; height: auto !important;
+  display: block !important;
+  font-size: 64px !important;
+  font-weight: 900 !important;
+  color: #e74c3c !important;
+  text-align: center !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  font-family: Arial, sans-serif !important;
+  letter-spacing: -2px !important;
+  animation: none !important;
+}
+
+/* Ochilganda katta va chiroyli foiz */
+.door__sales.revealed-win {
+  color: #e74c3c !important;
+  animation: pop-win 0.5s cubic-bezier(0.34,1.56,0.64,1) both !important;
+}
+.door__sales.revealed-lose {
+  color: #bbb !important;
+}
+@keyframes pop-win {
+  0%   { transform: scale(0.3); opacity: 0; }
+  60%  { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Foiz ostidagi yozuv */
+.hi-label {
+  font-size: 12px;
+  color: #888;
+  font-weight: 700;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+}
+.hi-label.win { color: #e74c3c; }
+
+/* === ESHIK (old yuz — rasm bilan) === */
+.door {
+  position: absolute !important;
+  top: 0 !important; left: 0 !important;
+  width: 100% !important; height: 100% !important;
+  background-image: url("{% static 'shop/images/door.png' %}") !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.38) !important;
+  transform-origin: 0% 0% !important;
+  transition: transform 0.75s ease !important;
+  will-change: transform !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  cursor: pointer !important;
+  z-index: 1 !important;
+  overflow: hidden !important;
+}
+
+#door__1 { background-image: url("{% static 'shop/images/door.png' %}") !important; }
+#door__2 { background-image: url("{% static 'shop/images/door2.png' %}") !important; }
+#door__3 { background-image: url("{% static 'shop/images/door3.png' %}") !important; }
+
+.door::before { content: none !important; animation: none !important; }
+.door::after  { content: none !important; }
+.door__inner-label { display: none !important; }
+.door__hot-badge   { display: none !important; }
+
+.door:hover {
+  transform: rotateY(-22deg) !important;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.5) !important;
+}
+
+/* Eshik raqami */
+.door-num {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.65);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 900;
+  border-radius: 50%;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 3;
+  pointer-events: none;
+  font-family: Arial, sans-serif;
+}
+
+/* Markaziy eshik kattaroq */
+.door__center-box {
+  transform: translateY(-16px) !important;
+  z-index: 2 !important;
+}
+.door__center-box .box {
+  width: 176px !important;
+  height: 316px !important;
+  flex: 0 0 176px !important;
+  max-width: 176px !important;
+}
+
+/* =====================================================
+   MOBIL — ANIQ VW HISOB-KITOB
+   Telefon: 3 ta box + 2 gap = viewport
+   ===================================================== */
+@media (max-width: 600px) {
+  .door__container { gap: 2.5vw !important; padding: 0 !important; }
+
+  .box {
+    width: 28vw !important;
+    height: 50vw !important;
+    flex: 0 0 28vw !important;
+    max-width: 28vw !important;
+  }
+
+  .door__center-box .box {
+    width: 31vw !important;
+    height: 56vw !important;
+    flex: 0 0 31vw !important;
+    max-width: 31vw !important;
+  }
+
+  .door__sales {
+    font-size: 12vw !important;
+    letter-spacing: -0.5vw !important;
+  }
+
+  .hi-label {
+    font-size: 8px !important;
+    margin-top: 4px !important;
+  }
+
+  .door-num {
+    width: 7vw; height: 7vw;
+    font-size: 4vw;
+    bottom: 2vw;
+  }
+}
+
+@media (max-width: 380px) {
+  .door__sales { font-size: 11vw !important; }
+}
+
+/* Eshik raqami */
+.door-num {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+  border-radius: 50%;
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Sertifikatlar bo'limi */
+.certs-section {
+  margin: 20px 0;
+  text-align: center;
+}
+.certs-section h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 14px;
+  font-family: Arial, sans-serif;
+}
+.certs-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: flex-start;
+}
+.cert-item {
+  flex: 0 0 auto;
+  max-width: 220px;
+  text-align: center;
+}
+.cert-item img {
+  width: 100%;
+  max-width: 220px;
+  border: 2px solid #c0392b;
+  border-radius: 6px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+}
+.cert-item p {
+  font-size: 12px;
+  color: #555;
+  margin-top: 5px;
+  font-family: Arial, sans-serif;
+}
+
+/* ===== MAHSULOT RASMLARI ===== */
+.product-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin: 24px auto;
+  max-width: 480px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 12px;
+}
+.product-gallery img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.2s, box-shadow 0.2s;
+  mix-blend-mode: multiply;
+}
+.product-gallery img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+@media (max-width: 480px) {
+  .product-gallery {
+    max-width: 100%;
+    padding: 0 8px;
+    gap: 12px;
+  }
+  .product-gallery img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+}
+
+/* ===== REAL ESHIK DIZAYNI ===== */
+.door__container { margin-top: 8px; }
+
+/* ===== MODAL ===== */
+#orderModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: rgba(10,10,20,0.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+#orderModal.open {
+  display: flex;
+  animation: modalBgIn 0.3s ease both;
+}
+@keyframes modalBgIn {
+  from { opacity:0; }
+  to   { opacity:1; }
+}
+.modal-box {
+  background: #fff;
+  border-radius: 22px;
+  width: 100%;
+  max-width: 420px;
+  padding: 32px 24px 28px;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+  animation: modalBoxIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes modalBoxIn {
+  from { transform: scale(0.82) translateY(30px); opacity:0; }
+  to   { transform: scale(1)    translateY(0);    opacity:1; }
+}
+.modal-close {
+  position: absolute;
+  top: 14px; right: 16px;
+  width: 30px; height: 30px;
+  border: none; background: #f0f0f0;
+  border-radius: 50%;
+  font-size: 18px; line-height: 30px;
+  cursor: pointer; color: #555;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-close:hover { background: #e0e0e0; }
+.modal-check {
+  width: 64px; height: 64px;
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px; color: #fff;
+  margin: 0 auto 14px;
+  box-shadow: 0 6px 20px rgba(39,174,96,0.45);
+  animation: checkPop 0.4s 0.2s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes checkPop {
+  from { transform:scale(0); opacity:0; }
+  to   { transform:scale(1); opacity:1; }
+}
+.modal-title {
+  font-size: clamp(16px,4.5vw,21px);
+  font-weight: 900;
+  color: #1a1a2e;
+  line-height: 1.35;
+  margin: 0 0 20px;
+  font-family: Arial, sans-serif;
+}
+.modal-form__group { margin-bottom: 13px; text-align: left; }
+.modal-form__label {
+  display: block;
+  font-size: 13px; font-weight: 600;
+  color: #555; margin-bottom: 5px;
+  font-family: Arial, sans-serif;
+}
+.modal-form__input {
+  width: 100%; box-sizing: border-box;
+  padding: 13px 14px; font-size: 16px;
+  border: 2px solid #e0e0e0; border-radius: 10px;
+  outline: none; font-family: Arial, sans-serif;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+.modal-form__input:focus { border-color: #e74c3c; }
+.modal-form__btn {
+  width: 100%; margin-top: 8px; padding: 15px;
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  color: #fff; font-size: 16px; font-weight: 900;
+  border: none; border-radius: 50px; cursor: pointer;
+  font-family: Arial, sans-serif; letter-spacing: 0.5px;
+  box-shadow: 0 6px 20px rgba(231,76,60,0.45);
+  animation: pulse-btn 1.6s infinite;
+}
+.modal-form__btn:active { transform: scale(0.97); }
+.modal-form__btn:disabled { opacity: 0.7; cursor: not-allowed; }
+.modal-note {
+  font-size: 12px; color: #888; margin: 10px 0 0;
+  font-family: Arial, sans-serif;
+}
+.modal-success { display: none; padding: 10px 0; }
+.modal-success__icon { font-size: 48px; margin-bottom: 8px; }
+.modal-success__text {
+  font-size: 18px; font-weight: 700;
+  color: #27ae60; line-height: 1.5;
+  font-family: Arial, sans-serif;
+}
+@media (max-width: 400px) {
+  .modal-box { padding: 24px 16px 22px; }
+  .modal-form__btn { font-size: 14px; padding: 13px; }
+}
+
+/* ========== 1. JONLI BILDIRISHNOMA ========== */
+#social-proof {
+  position: fixed;
+  bottom: 70px;
+  left: 14px;
+  z-index: 99998;
+  background: #fff;
+  border-radius: 14px;
+  padding: 12px 14px 12px 12px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 280px;
+  width: calc(100vw - 28px);
+  transform: translateX(-120%);
+  transition: transform 0.4s cubic-bezier(0.34,1.2,0.64,1);
+  border-left: 4px solid #27ae60;
+}
+#social-proof.show { transform: translateX(0); }
+.sp-icon {
+  font-size: 26px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.sp-text { font-family: Arial,sans-serif; flex: 1; min-width: 0; }
+.sp-name { font-size: 13px; font-weight: 700; color: #1a1a2e; }
+.sp-desc { font-size: 12px; color: #27ae60; font-weight: 600; margin-top: 1px; }
+.sp-time { font-size: 11px; color: #aaa; margin-top: 2px; }
+
+/* ========== 2. COUNTDOWN ========== */
+.countdown-wrap {
+  background: linear-gradient(135deg, #1a1a2e, #2c3e50);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 16px 0;
+  text-align: center;
+  font-family: Arial,sans-serif;
+}
+.countdown-label {
+  font-size: 13px;
+  color: #f1c40f;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+}
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+.cd-block {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 8px 10px;
+  min-width: 52px;
+  text-align: center;
+}
+.cd-num {
+  font-size: clamp(22px,5vw,30px);
+  font-weight: 900;
+  color: #e74c3c;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.cd-lbl {
+  font-size: 10px;
+  color: #aaa;
+  margin-top: 3px;
+  letter-spacing: 0.5px;
+}
+.cd-sep { font-size: 24px; font-weight: 900; color: #e74c3c; line-height: 1; margin-bottom: 14px; }
+
+/* ========== 3. ZAXIRA ========== */
+.stock-wrap {
+  background: #fff8f0;
+  border: 1.5px solid #e67e22;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-family: Arial,sans-serif;
+}
+.stock-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.stock-label { font-size: 13px; font-weight: 700; color: #c0392b; }
+.stock-count { font-size: 13px; font-weight: 700; color: #e67e22; }
+.stock-bar-bg {
+  background: #f0e0d0;
+  border-radius: 6px;
+  height: 8px;
+  overflow: hidden;
+}
+.stock-bar-fill {
+  background: linear-gradient(to right, #e67e22, #c0392b);
+  height: 100%;
+  border-radius: 6px;
+  transition: width 1s ease;
+}
+
+/* ========== 4. KAFOLAT BADGES ========== */
+.trust-badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 50px;
+  padding: 9px 16px;
+  font-family: Arial,sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #2c3e50;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.trust-badge span { font-size: 18px; }
+@media (max-width: 480px) {
+  .trust-badges { gap: 7px; }
+  .trust-badge { font-size: 11px; padding: 8px 12px; }
+}
+
+/* ========== 5. STATISTIKA ========== */
+.stats-block {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0;
+  background: linear-gradient(135deg, #1a1a2e, #2c3e50);
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 20px 0;
+  font-family: Arial,sans-serif;
+}
+.stat-item {
+  flex: 1;
+  text-align: center;
+  padding: 18px 8px;
+  position: relative;
+}
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 20%; bottom: 20%;
+  width: 1px;
+  background: rgba(255,255,255,0.12);
+}
+.stat-num {
+  font-size: clamp(20px,5vw,28px);
+  font-weight: 900;
+  color: #f1c40f;
+  line-height: 1;
+}
+.stat-lbl {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 5px;
+  line-height: 1.3;
+}
+@media (max-width: 360px) {
+  .stat-num { font-size: 18px; }
+  .stat-lbl { font-size: 10px; }
+  .stat-item { padding: 14px 4px; }
+}
+</style>
+</head>
+<body class="iti-mobile">
+<a class="bottom_btn" href="#zakaz"> РАСМИЙ САЙТДА БУЮРТМА БЕРИШ </a>
+<style>.bottom_btn{position:fixed;bottom:0;left:0;z-index:99999;width:100%;padding:15px 0;background:#c23e3e;color:#fff;text-align:center;text-decoration:none;font-weight:bold}</style>
+<div class="all">
+<div class="b_top"></div>
+<div class="top">
+<a class="vtbadlink logo scrollto" href="#form" title="На главную">
+<img alt="" src="{% static 'shop/images/logo.png' %}" title=""/>
+</a>
+<div class="clear"></div>
+</div>
+<div class="main" id="main">
+<div class="contentBox">
+<div>
+<h1 class="myhead1">
+<span style="font-family: Arial, Helvetica, sans-serif">
+                            Бош андролог: «Жинсий фаолият бузилиши (импотенция) - шунчаки
+                            ноқулайлик эмас. Мунтазам жинсий алоқа қилмаслик умрни 10-14
+                            йилга қисқартиради. Аммо нажот йўли бор!»
+                        </span>
+</h1>
+
+<!-- STATISTIKA -->
+<div class="stats-block">
+  <div class="stat-item">
+    <div class="stat-num">14 000+</div>
+    <div class="stat-lbl">Мижоз</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">97%</div>
+    <div class="stat-lbl">Мамнунлик</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">6 йил</div>
+    <div class="stat-lbl">Тажриба</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">100%</div>
+    <div class="stat-lbl">Аноним</div>
+  </div>
+</div>
+<div>
+<div>
+<div style="text-align: center">
+<span style="font-family: Arial, Helvetica, sans-serif">
+<img src="{% static 'shop/images/image149.jpg' %}" style="max-width: 800px; width: 100%"/>
+</span>
+</div>
+<p>
+<strong>
+                                    Темур Рахмонов: «Мен жинсий қуввати заифлашган ҳар бир эркак
+                                    импотенцияни 1 курсдаёқ даволайдиган энг янги воситани 50% чегирма билан
+                                    олишини кафолатлайман.»
+                                    </strong>
+</p>
+</div>
+</div>
+</div>
+<div>
+<p>
+                        Бош андролог Темур Рахмонов матбуот анжуманидан:
+                        "Жинсий фаолият бузилиши (импотенция) - шунчаки ноқулайлик эмас.
+                        Мунтазам жинсий алоқа қилмаслик ўсмаларни ҳосил қилиб, иммунитетни
+                        пасайтириб юборади ва умрни 10-14 йилга қисқартиради.»
+                    </p>
+<h3>
+                        Бош андролог Темур Рахмонов билан эксклюзив интервью: «Нима учун
+                        импотенция ўлдиради ва ўзингизни қандай халос этишингиз мумкин?»
+                    </h3>
+<p class="moderation" style="text-align: center">
+<span style="font-family: Arial, Helvetica, sans-serif">
+<img alt="" src="{% static 'shop/images/439-03cc0a8d7c1e82dfd8de04bff3fe2536.jpg.pagespeed.ce.ou5VvG2PX1.jpg' %}" style="max-width: 700px; width: 80%"/>
+</span>
+</p>
+<p>
+<span style="font-family: Arial, Helvetica, sans-serif"><strong>Мухбир: Нима учун потенция
+                                пасайишини эркак вужуди учун
+                                xавфли ҳисоблайсиз?</strong></span>
+</p>
+<p>
+<span style="font-family: Arial, Helvetica, sans-serif"><strong>Темур Рахмонов:</strong>Жавоби
+                            жўн. Исталган организм -
+                            мураккаб тизим бўлиб, гормонлар томонидан бошқарилади. Барча
+                            ички аъзолар ва тизимлар фаолияти умумий гормонал фонга боғлиқ.
+                            Эркакларда соғлиқни тартибга солувчи асосий модда - тестостерон.
+                            Уни ишлаб чиқариш эса эркакнинг жинсий фаоллиги билан чамбарчас
+                            боғлиқ.</span>
+</p>
+<p>
+<span style="font-family: Arial, Helvetica, sans-serif">Бу эса тестостерон миқдори бутун
+                            организмга таъсир кўрсатади
+                            деганидир. Потенция пасайганда илк навбатда сийдик-таносил
+                            тизимига кирувчи аъзолар азият чекади. </span>
+</p>
+<div class="moderation">
+<div class="block-4">
+<strong><span style="font-family: Arial, Helvetica, sans-serif">Потенция сусайиши простатит,
+                                    простата аденомаси,
+                                    эпидидимит, ўсмалар ҳосил бўлиши ва умуман бутун организм
+                                    заифлашувини чақиради.
+                                </span></strong>
+</div>
+<p style="text-align: center">
+<span style="font-family: Arial, Helvetica, sans-serif"><img alt="" src="{% static 'shop/images/aterosklerozis.jpg' %}" style="max-width: 600px; width: 100%"/></span>
+</p>
+</div>
+<p>
+<span style="font-family: Arial, Helvetica, sans-serif">Айнан шу сабабдан потенция пасайишини
+                            хавфли касаллик деб
+                            ҳисоблайман, у ҳозирда энг кенг тарқалган эркак касаллиги
+                            саналади. Келинг ҳақиқатга тик қарайлик - 50 ёшдан ошган
+                            эркакларнинг 82 фоизида потенция пасайиши кузатилади.</span>
+</p>
+<p>
+<span style="font-family: Arial, Helvetica, sans-serif"><strong>Мухбир: Нега шифокорлар
+                                касалликни енголмаяпти? Сизлар
+                                одамларни қутқаришингиз керак-ку ахир.</strong></span>
+</p>
+<p>
+<span style="font-family: Arial, Helvetica, sans-serif"><strong>Темур Рахмонов:
+                            </strong>Биринчидан, эркаклар
+                            касалликни ўтказиб юборганларидан кейингина шифокор қабулига
+                            боришади, чунки бу уятли муаммо ва ҳар бир эркак импотентлигини
+                            тан олгиси келмайди.</span>
+</p>
+<p>
+<span style="font-family: Arial, Helvetica, sans-serif">Иккинчидан, клиникаларда ҳозир xодимлар
+                            етишмайди.
+                            Андрологларнинг етишмаслиги 67% бўлса, қандай қилиб курашиш
+                            керак?</span>
+</p>
+<div class="moderation">
+<div class="block-4">
+<span style="font-family: Arial, Helvetica, sans-serif"><strong>Потенция бузилишлари
+                                    даволанмас экан, ёндош касалликлар
+                                    ривожланиши хавфи туғилади</strong></span>
+</div>
+</div>
+<p>
+<span style="font-family: Arial, Helvetica, sans-serif">Ҳаммасини жамласак мана бундай хулосага
+                            келамиз. Эркаклар тўғри
+                            даволанмай, нафақат потенцияни йўқотишади, балки соғлиқдан ҳам
+                            маҳрум бўлишади.</span>
+</p>
+<div class="block-4">
+<span style="font-family: Arial, Helvetica, sans-serif"><strong>Энди ҳар бир эркак потенциясини
+                                тиклаши мумкин</strong></span>
+</div>
+<p>
+<span style="font-family: Arial, Helvetica, sans-serif">
+                            Аммо эркаклар саломатлиги учун курашда ёрқин лаҳзалар ҳам
+                            мавжуд. Мен исталган ёшда потенцияни тиклайдиган янги воситани
+                            атиги 50% чегирма билан тарқатишга муваффақ бўлдим.
+</span>
+</p>
+<p>
+<span style="font-family: Arial, Helvetica, sans-serif"><strong>Темур Рахмонов: </strong>Бу
+                            AndroBoss, энг янги
+                            воситалардан бири.</span>
+</p>
+<div class="product-gallery">
+  <img alt="AndroBoss qadoq" src="{% static 'shop/images/115.png' %}"/>
+  <img alt="AndroBoss quti" src="{% static 'shop/images/116.png' %}"/>
+</div>
+<p>
+<span style="font-family: Arial, Helvetica, sans-serif">У 3 та муҳим таъсирга эга. Биринчидан,
+                            табиий тестостерон ишлаб
+                            чиқаришни рағбатлантиради. Иккинчидан, сийдик-таносил тизими
+                            томирларини ҳаётий фаолият маҳсулотларидан тозалайди. Учинчидан,
+                            простатани тозалайди.
+                        </span>
+</p>
+<p>
+<span style="font-family: Arial, Helvetica, sans-serif"><strong>Асосий таъсирларидан ташқари,
+                                AndroBoss қатор қўшимча самаралар беради:</strong></span>
+</p>
+<ol>
+<li><span style="font-family: Arial, Helvetica, sans-serif"><strong>Потенцияни тиклайди</strong></span></li>
+<li><span style="font-family: Arial, Helvetica, sans-serif"><strong>Сурункали простатитда яллиғланишни йўқотади</strong></span></li>
+<li><span style="font-family: Arial, Helvetica, sans-serif"><strong>Сийдик чиқариш йўллари инфекцияларини йўқотади</strong></span></li>
+<li><span style="font-family: Arial, Helvetica, sans-serif"><strong>Сийдик чиқаришни тезлаштириб, енгиллаштиради</strong></span></li>
+<li><span style="font-family: Arial, Helvetica, sans-serif"><strong>Иммунитетни оширади</strong></span></li>
+<li><span style="font-family: Arial, Helvetica, sans-serif"><strong>Кичик чаноқ аъзоларида қон айланишини яхшилайди</strong></span></li>
+</ol>
+<p>
+<span style="font-family: Arial, Helvetica, sans-serif">
+                            Воситани фақат 6 ойдан сўнг олиш мумкинлиги таxмин қилинган эди.
+                            Аммо мен маъмурлар билан музокаралар олиб боришга муваффақ бўлдим.
+                            Натижада, ҳозир эркаклар AndroBoss ни махсус дастур доирасида олишлари мумкин.
+                        </span>
+</p>
+<div class="certs-section">
+  <h3>&#x2705; AndroBoss — rasmiy sertifikatlar va ruxsatnomalar</h3>
+  <div class="certs-grid">
+    <div class="cert-item">
+      <img alt="Sanitariya-epidemiologiya xulosa" src="{% static 'shop/images/111.jpg' %}"/>
+      <p>Sanitariya-epidemiologiya xulosasi</p>
+    </div>
+    <div class="cert-item">
+      <img alt="Muvofiqlik sertifikati" src="{% static 'shop/images/112.jpg' %}"/>
+      <p>Muvofiqlik sertifikati</p>
+    </div>
+    <div class="cert-item">
+      <img alt="Ruxsatnoma" src="{% static 'shop/images/113.jpg' %}"/>
+      <p>Sog'liqni saqlash vazirligi ruxsatnomasi</p>
+    </div>
+  </div>
+</div>
+<div class="pg" style="background: rgb(255, 236, 166); padding: 20px; border: 1px solid red;">
+<h3>AndroBoss 50% чегирмани олиш шартлари:</h3>
+<ul style="font-size: 18px">
+<li><b>Фақат шахсий фойдаланиш учун</b></li>
+<li><b>Расмий сайт ёки бланк шакл орқали буюртманомани расмийлаштириш мумкин</b></li>
+</ul>
+</div>
+<br/><br/>
+<div style="margin: 0 auto; max-width: 800px; width: 100%">
+<div id="zakaz"></div>
+
+<!-- COUNTDOWN -->
+<div class="countdown-wrap">
+  <div class="countdown-label">⏳ 50% chegirma tugashiga:</div>
+  <div class="countdown-timer">
+    <div class="cd-block"><div class="cd-num" id="cd-h">02</div><div class="cd-lbl">SOAT</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-block"><div class="cd-num" id="cd-m">47</div><div class="cd-lbl">DAQIQA</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-block"><div class="cd-num" id="cd-s">33</div><div class="cd-lbl">SONIYA</div></div>
+  </div>
+</div>
+
+<!-- ZAXIRA -->
+<div class="stock-wrap">
+  <div class="stock-top">
+    <span class="stock-label">🔥 Zaxira tugayapti!</span>
+    <span class="stock-count">Faqat <b id="stock-num">12</b> ta qoldi</span>
+  </div>
+  <div class="stock-bar-bg">
+    <div class="stock-bar-fill" id="stock-bar" style="width:18%"></div>
+  </div>
+</div>
+
+<!-- KAFOLAT -->
+<div class="trust-badges">
+  <div class="trust-badge"><span>🔒</span> 100% Anonimlik</div>
+  <div class="trust-badge"><span>✅</span> Rasmiy mahsulot</div>
+  <div class="trust-badge"><span>↩️</span> 30 kun kafolat</div>
+</div>
+
+<div id="doors_block">
+<div class="door__wrapper">
+<h2 class="door__title">ҚАЙСИ ЕШИКДА 50% ЧЕГИРМА БОРЛИГИНИ ТОПИНГ</h2>
+<div class="door__container">
+<div class="box" id="dbox1">
+  <div class="hi"><p class="door__sales">25%</p></div>
+  <div class="door" id="door__1">
+    <div class="dp dp-t"></div>
+    <div class="dp dp-b"></div>
+    <div class="dk"></div>
+  </div>
+  <span class="door-num">1</span>
+</div>
+<div class="box" id="dbox2">
+  <div class="hi"><p class="door__sales">25%</p></div>
+  <div class="door" id="door__2">
+    <div class="dp dp-t"></div>
+    <div class="dp dp-b"></div>
+    <div class="dk"></div>
+  </div>
+  <span class="door-num">2</span>
+</div>
+<div class="box" id="dbox3">
+  <div class="hi"><p class="door__sales">25%</p></div>
+  <div class="door" id="door__3">
+    <div class="dp dp-t"></div>
+    <div class="dp dp-b"></div>
+    <div class="dk"></div>
+  </div>
+  <span class="door-num">3</span>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+<p>
+<span style="font-family: Arial, Helvetica, sans-serif"><strong>Мухбир: Раҳмат! Ўқувчиларимиз бу
+                                восита ҳақида билгач,
+                                албатта ундан фойдаланишади!</strong></span>
+</p>
+<p class="rub-ramka">
+<span class="myh4">12 SOAT OLDIN QO'SHILGAN | TAHRIRIYAT ESLATMASI:</span>
+<span>Муҳим янгилик!</span>
+                        Дастур 12.08.2025 гача ўтказилади. Акция тугашига қадар
+                        AndroBoss оригинал воситасини расмий сайт орқали барча хоҳловчилар
+                        50% чегирма билан олиши мумкин! Ҳозир арзон қутилар қолди:
+                        <font color="red"><b><font class="left-pack lastpack">58</font> ДОНА</b></font>
+</p>
+</div>
+</div>
+</div>
+<div class="commit">
+<div class="comTitle">ШАРҲЛАР <span class="review-count">(25)</span></div>
+<div class="reviews-list">
+<div class="review-card">
+<div class="review-header">
+<div class="review-avatar-wrap"><img alt="Рустамова Шанхоза" class="review-avatar" src="{% static 'shop/images/15copy-14copy-482-63267c57ef7d54caadfde58e64e9b3bc.jpg' %}"/></div>
+<div class="review-meta">
+<span class="review-name">Рустамова Шанхоза</span>
+<div class="review-rating">
+<span class="stars">★★★★★<span class="stars-empty"></span></span>
+<span class="review-date">14.04.2026</span>
+</div>
+</div>
+</div>
+<p class="review-text">Бу восита ҳақида ахборот учун сизлардан миннатдорман. Эрим кўпдан бери бу муаммога учраган, сўнгги бор икки йил аввал жинсий алоқа қилгандик. Курс буюртирдим.</p>
+</div>
+<div class="review-card">
+<div class="review-header">
+<div class="review-avatar-wrap"><img alt="Усманов Бек" class="review-avatar" src="{% static 'shop/images/ava_08.jpg' %}"/></div>
+<div class="review-meta">
+<span class="review-name">Усманов Бек</span>
+<div class="review-rating">
+<span class="stars">★★★★★<span class="stars-empty"></span></span>
+<span class="review-date">14.04.2026</span>
+</div>
+</div>
+</div>
+<p class="review-text">Маъқуллайман! AndroBoss — импотенцияга қарши зўр восита!</p>
+</div>
+<div class="review-card">
+<div class="review-header">
+<div class="review-avatar-wrap"><img alt="Махмудов Отабек" class="review-avatar" src="{% static 'shop/images/17copy-16copy-576-63267c57ef7d54caadfde58e64e9b3bc.jpg' %}"/></div>
+<div class="review-meta">
+<span class="review-name">Махмудов Отабек</span>
+<div class="review-rating">
+<span class="stars">★★★★★<span class="stars-empty"></span></span>
+<span class="review-date">13.04.2026</span>
+</div>
+</div>
+</div>
+<p class="review-text">AndroBoss яхши капсулалар. Менга зўр ёрдам берди, энди потенция михдек.</p>
+</div>
+<div class="review-card">
+<div class="review-header">
+<div class="review-avatar-wrap"><img alt="Хайдаров Сардор" class="review-avatar" src="{% static 'shop/images/17copy-16copy-458-63267c57ef7d54caadfde58e64e9b3bc.jpg' %}"/></div>
+<div class="review-meta">
+<span class="review-name">Хайдаров Сардор</span>
+<div class="review-rating">
+<span class="stars">★★★★★<span class="stars-empty"></span></span>
+<span class="review-date">12.04.2026</span>
+</div>
+</div>
+</div>
+<p class="review-text">Раҳмат, восита ростданам зўр ёрдам берди! Даволанишни чўзманг, ҳозироқ бу муаммодан халос бўлинг.</p>
+</div>
+<div class="review-card">
+<div class="review-header">
+<div class="review-avatar-wrap"><img alt="Ислом Хаятов" class="review-avatar" src="{% static 'shop/images/user_9.png' %}"/></div>
+<div class="review-meta">
+<span class="review-name">Ислом Хаятов</span>
+<div class="review-rating">
+<span class="stars">★★★★★<span class="stars-empty"></span></span>
+<span class="review-date">12.04.2026</span>
+</div>
+</div>
+</div>
+<p class="review-text">Мен ҳам буюртма қолдирдим. 50% skidkada, олинглар!</p>
+</div>
+<div class="review-card">
+<div class="review-header">
+<div class="review-avatar-wrap"><img alt="Нодир Абдуллаев" class="review-avatar" src="{% static 'shop/images/user_8.jpg' %}"/></div>
+<div class="review-meta">
+<span class="review-name">Нодир Абдуллаев</span>
+<div class="review-rating">
+<span class="stars">★★★★<span class="stars-empty">☆</span></span>
+<span class="review-date">11.04.2026</span>
+</div>
+</div>
+</div>
+<p class="review-text">AndroBoss ни қандай буюртирса бўлади? Расмий сайтни тополмаяпман.</p>
+</div>
+<div class="review-card">
+<div class="review-header">
+<div class="review-avatar-wrap"><img alt="Якубов Эргаш" class="review-avatar" src="{% static 'shop/images/17copy-16copy-859-63267c57ef7d54caadfde58e64e9b3bc.jpg' %}"/></div>
+<div class="review-meta">
+<span class="review-name">Якубов Эргаш</span>
+<div class="review-rating">
+<span class="stars">★★★★★<span class="stars-empty"></span></span>
+<span class="review-date">09.04.2026</span>
+</div>
+</div>
+</div>
+<p class="review-text">Мен ҳам AndroBoss учун ишлаб чиқарувчи сайтида буюртма бергандим. Жўнатма уч кундаёқ келди.</p>
+</div>
+<div class="review-card">
+<div class="review-header">
+<div class="review-avatar-wrap"><img alt="Балтаева Шоира" class="review-avatar" src="{% static 'shop/images/15copy-14copy-417-63267c57ef7d54caadfde58e64e9b3bc.jpg' %}"/></div>
+<div class="review-meta">
+<span class="review-name">Балтаева Шоира</span>
+<div class="review-rating">
+<span class="stars">★★★★★<span class="stars-empty"></span></span>
+<span class="review-date">09.04.2026</span>
+</div>
+</div>
+</div>
+<p class="review-text">AndroBoss учун қандай қилиб буюртма бериш мумкин? Эримга табиий восита олиб бермоқчийдим.</p>
+</div>
+<div class="review-card">
+<div class="review-header">
+<div class="review-avatar-wrap"><img alt="Ахраров Бек" class="review-avatar" src="{% static 'shop/images/17copy-16copy-403-63267c57ef7d54caadfde58e64e9b3bc.jpg' %}"/></div>
+<div class="review-meta">
+<span class="review-name">Ахраров Бек</span>
+<div class="review-rating">
+<span class="stars">★★★★★<span class="stars-empty"></span></span>
+<span class="review-date">08.04.2026</span>
+</div>
+</div>
+</div>
+<p class="review-text">AndroBoss учун раҳмат! Синаб кўрдим, потенция тикланди!</p>
+</div>
+<div class="review-card">
+<div class="review-header">
+<div class="review-avatar-wrap"><img alt="Бахтиер Турсунов" class="review-avatar" src="{% static 'shop/images/m3.jpg' %}"/></div>
+<div class="review-meta">
+<span class="review-name">Бахтиер Турсунов</span>
+<div class="review-rating">
+<span class="stars">★★★★★<span class="stars-empty"></span></span>
+<span class="review-date">02.04.2026</span>
+</div>
+</div>
+</div>
+<p class="review-text">Мен уни бир ойдан бери қабул қиламан. Жинсий олатим яхши кўрина бошлади!</p>
+</div>
+<div class="review-card">
+<div class="review-header">
+<div class="review-avatar-wrap"><img alt="Абдулазиз Нуридинов" class="review-avatar" src="{% static 'shop/images/m1.jpg' %}"/></div>
+<div class="review-meta">
+<span class="review-name">Абдулазиз Нуридинов</span>
+<div class="review-rating">
+<span class="stars">★★★★★<span class="stars-empty"></span></span>
+<span class="review-date">28.03.2026</span>
+</div>
+</div>
+</div>
+<p class="review-text">Мақолани ўқиб, сайтдаги шакл орқали буюртиришга қарор қилдим. Препарат жуда тез келди. Катта раҳмат!</p>
+</div>
+<div class="review-card">
+<div class="review-header">
+<div class="review-avatar-wrap"><img alt="Гульнора Шарипова" class="review-avatar" src="{% static 'shop/images/w4.jpg' %}"/></div>
+<div class="review-meta">
+<span class="review-name">Гульнора Шарипова</span>
+<div class="review-rating">
+<span class="stars">★★★★★<span class="stars-empty"></span></span>
+<span class="review-date">27.03.2026</span>
+</div>
+</div>
+</div>
+<p class="review-text">Препарат учун расмий сайтда буюртма бериб тўғри иш қилибсиз, чунки у ҳозир фақат дастур доирасида тарқатилмоқда.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- JONLI BILDIRISHNOMA -->
+<div id="social-proof">
+  <div class="sp-icon">📦</div>
+  <div class="sp-text">
+    <div class="sp-name" id="sp-name">Alisher T.</div>
+    <div class="sp-desc">AndroBoss buyurtma berdi</div>
+    <div class="sp-time" id="sp-time">3 daqiqa oldin</div>
+  </div>
+</div>
+
+<!-- ===== MODAL ===== -->
+<div id="orderModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Yopish">&#x2715;</button>
+    <div class="modal-check">✓</div>
+    <p class="modal-title">ТАБРИКЛАЙМИЗ!<br/>СИЗ 50% ЧЕГИРМАГА ЭГА БУЛДИНГИЗ!</p>
+    <div id="modalForm">
+      <div class="modal-form__group">
+        <label class="modal-form__label">Исмингиз</label>
+        <input class="modal-form__input" id="modalName" type="text" placeholder="Исм ва фамилия" autocomplete="name"/>
+      </div>
+      <div class="modal-form__group">
+        <label class="modal-form__label">Телефон рақам</label>
+        <input class="modal-form__input" id="modalPhone" type="tel" placeholder="+998 __ ___ __ __" autocomplete="tel"/>
+      </div>
+      <button class="modal-form__btn" id="modalBtn" type="button">БУЮРТМА БЕРИШ</button>
+      <p class="modal-note">&#128222; Операторимиз 15 дақиқа ичида қўнғироқ қилади</p>
+    </div>
+    <div class="modal-success" id="modalSuccess">
+      <div class="modal-success__icon">&#128222;</div>
+      <p class="modal-success__text">Буюртмангиз қабул қилинди!<br/>Тез орада қўнғироқ қиламиз.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var done = false;
+  var selectedDiscount = 50;
+
+  /* Static images URL */
+  var IMAGES_URL = '{% static "shop/images/" %}';
+
+  /* ============================================================
+     ESHIK O'LCHAMLARI — JS ORQALI
+     ============================================================ */
+  function applyDoorSizes(){
+    var vw = window.innerWidth;
+    var isMobile = vw <= 600;
+    var sideW, sideH, centerW, centerH, fontSize;
+    if(isMobile){
+      sideW   = Math.floor(vw * 0.26);
+      sideH   = Math.floor(sideW * 1.8);
+      centerW = Math.floor(sideW * 1.08);
+      centerH = Math.floor(centerW * 1.8);
+      fontSize = Math.floor(sideW * 0.42);
+    } else {
+      sideW   = 160; sideH   = 285;
+      centerW = 180; centerH = 325;
+      fontSize = 64;
+    }
+
+    var ids = ['dbox1','dbox2','dbox3'];
+    ids.forEach(function(id){
+      var box = document.getElementById(id);
+      if(!box) return;
+      var isCenter = box.parentElement &&
+                     box.parentElement.classList.contains('door__center-box');
+      var w = isCenter ? centerW : sideW;
+      var h = isCenter ? centerH : sideH;
+
+      box.style.cssText += ';width:'+w+'px!important;height:'+h+'px!important;' +
+        'min-width:'+w+'px!important;max-width:'+w+'px!important;' +
+        'position:relative!important;flex:0 0 '+w+'px!important;' +
+        'perspective:900px!important;cursor:pointer!important;' +
+        'border-radius:12px!important;overflow:visible!important;background:transparent!important;';
+
+      var hi = box.querySelector('.hi');
+      if(hi){
+        hi.style.cssText = 'position:absolute!important;top:0!important;left:0!important;' +
+          'width:'+w+'px!important;height:'+h+'px!important;' +
+          'display:flex!important;flex-direction:column!important;' +
+          'align-items:center!important;justify-content:center!important;' +
+          'background:#fff!important;border-radius:12px!important;' +
+          'border:3px solid #e0e0e0!important;z-index:0!important;overflow:hidden!important;' +
+          'transform:none!important;box-sizing:border-box!important;';
+      }
+
+      var sales = box.querySelector('.door__sales');
+      if(sales){
+        sales.style.cssText = 'position:relative!important;display:block!important;' +
+          'font-size:'+fontSize+'px!important;font-weight:900!important;' +
+          'color:#bbb!important;text-align:center!important;line-height:1!important;' +
+          'padding:0!important;margin:0!important;top:auto!important;left:auto!important;' +
+          'width:auto!important;height:auto!important;background:transparent!important;' +
+          'border-radius:0!important;box-shadow:none!important;text-shadow:none!important;' +
+          'font-family:Arial,sans-serif!important;letter-spacing:-1px!important;';
+      }
+
+      var door = box.querySelector('.door');
+      if(door){
+        var imgUrl = door.id === 'door__2' ? IMAGES_URL+'door2.png' :
+                     door.id === 'door__3' ? IMAGES_URL+'door3.png' : IMAGES_URL+'door.png';
+        door.style.cssText = 'position:absolute!important;top:0!important;left:0!important;' +
+          'width:'+w+'px!important;height:'+h+'px!important;' +
+          'background-image:url("'+imgUrl+'")!important;' +
+          'background-size:cover!important;background-position:center!important;' +
+          'background-repeat:no-repeat!important;background-color:transparent!important;' +
+          'border:none!important;border-radius:12px!important;' +
+          'box-shadow:0 8px 28px rgba(0,0,0,0.38)!important;' +
+          'transform-origin:0% 0%!important;transition:transform 0.75s ease!important;' +
+          'cursor:pointer!important;z-index:1!important;' +
+          'backface-visibility:hidden!important;-webkit-backface-visibility:hidden!important;';
+      }
+
+      var num = box.querySelector('.door-num');
+      if(num){
+        var numSize = isMobile ? Math.max(24, Math.floor(sideW*0.28)) : 36;
+        var numFont = isMobile ? Math.max(13, Math.floor(sideW*0.16)) : 20;
+        num.style.cssText = 'position:absolute!important;bottom:10px!important;' +
+          'left:50%!important;transform:translateX(-50%)!important;' +
+          'width:'+numSize+'px!important;height:'+numSize+'px!important;' +
+          'font-size:'+numFont+'px!important;font-weight:900!important;' +
+          'background:rgba(0,0,0,0.65)!important;color:#fff!important;' +
+          'border-radius:50%!important;display:flex!important;' +
+          'align-items:center!important;justify-content:center!important;' +
+          'z-index:3!important;pointer-events:none!important;font-family:Arial,sans-serif!important;';
+      }
+    });
+
+    var cont = document.querySelector('.door__container');
+    if(cont){
+      var gap = isMobile ? 8 : 12;
+      cont.style.cssText += ';display:flex!important;justify-content:center!important;' +
+        'align-items:flex-end!important;gap:'+gap+'px!important;' +
+        'perspective:1200px!important;';
+    }
+
+    var centerBox = document.querySelector('.door__center-box');
+    if(centerBox){
+      centerBox.style.cssText += ';transform:translateY(-14px)!important;z-index:2!important;';
+    }
+  }
+
+  applyDoorSizes();
+  window.addEventListener('resize', applyDoorSizes);
+
+  var container = document.querySelector('.door__container');
+  if(container) container.style.perspective = '1200px';
+
+  setTimeout(function(){
+    hint('dbox1', 900);
+    setTimeout(function(){ hint('dbox3', 900); }, 1800);
+  }, 1500);
+
+  function hint(boxId, dur){
+    var box = document.getElementById(boxId);
+    if(!box || done) return;
+    var door = box.querySelector('.door');
+    if(!door) return;
+    door.style.transition = 'transform ' + dur + 'ms ease';
+    door.style.transform = 'rotateY(-22deg)';
+    setTimeout(function(){
+      if(!done) door.style.transform = 'rotateY(0deg)';
+    }, dur + 200);
+  }
+
+  function openBox(boxId){
+    if(done) return;
+    done = true;
+
+    var allIds = ['dbox1','dbox2','dbox3'];
+
+    allIds.forEach(function(id){
+      var box   = document.getElementById(id);
+      if(!box) return;
+      var door  = box.querySelector('.door');
+      var sales = box.querySelector('.door__sales');
+      var num   = box.querySelector('.door-num');
+      if(!door || !sales) return;
+
+      door.style.transition = 'transform 0.8s cubic-bezier(0.4,0,0.2,1)';
+      door.style.transform  = 'rotateY(-95deg)';
+      if(num){ num.style.transition = 'opacity 0.3s'; num.style.opacity = '0'; }
+
+      var isWin = (id === boxId);
+      if(isWin) selectedDiscount = 50;
+
+      setTimeout(function(){
+        if(isWin){
+          sales.textContent = '50%';
+          sales.classList.add('revealed-win');
+          sales.style.setProperty('color', '#e74c3c', 'important');
+          sales.style.setProperty('animation', 'pop-win 0.5s cubic-bezier(0.34,1.56,0.64,1) both', 'important');
+          var hi = box.querySelector('.hi');
+          if(hi){
+            hi.style.setProperty('border', '3px solid #e74c3c', 'important');
+            hi.style.setProperty('background', 'linear-gradient(135deg, #fff5f5, #ffffff)', 'important');
+            hi.style.setProperty('box-shadow', '0 0 0 4px rgba(231,76,60,0.15)', 'important');
+          }
+          var lbl = box.querySelector('.hi-label');
+          if(!lbl){
+            lbl = document.createElement('div');
+            lbl.className = 'hi-label win';
+            lbl.style.cssText = 'font-size:11px;color:#e74c3c;font-weight:700;margin-top:6px;' +
+              'letter-spacing:0.5px;font-family:Arial,sans-serif;text-transform:uppercase;';
+            if(hi) hi.appendChild(lbl);
+          }
+          lbl.textContent = 'CHEGIRMA';
+        } else {
+          sales.textContent = '25%';
+          sales.classList.add('revealed-lose');
+          sales.style.setProperty('color', '#ccc', 'important');
+          var lbl2 = box.querySelector('.hi-label');
+          if(!lbl2){
+            lbl2 = document.createElement('div');
+            lbl2.className = 'hi-label';
+            lbl2.style.cssText = 'font-size:10px;color:#ccc;font-weight:700;margin-top:5px;' +
+              'letter-spacing:0.5px;font-family:Arial,sans-serif;text-transform:uppercase;';
+            var hi2 = box.querySelector('.hi');
+            if(hi2) hi2.appendChild(lbl2);
+          }
+          lbl2.textContent = "CHEGIRMA YO'Q";
+        }
+      }, 500);
+    });
+
+    setTimeout(function(){
+      document.getElementById('orderModal').classList.add('open');
+    }, 1100);
+  }
+
+  ['dbox1','dbox2','dbox3'].forEach(function(id){
+    var box = document.getElementById(id);
+    if(box){
+      box.addEventListener('click', function(){ openBox(id); });
+      box.addEventListener('touchend', function(e){
+        e.preventDefault();
+        openBox(id);
+      }, {passive: false});
+    }
+  });
+
+  var modalClose = document.getElementById('modalClose');
+  var modal = document.getElementById('orderModal');
+  if(modalClose){
+    modalClose.addEventListener('click', function(){
+      modal.classList.remove('open');
+    });
+  }
+  if(modal){
+    modal.addEventListener('click', function(e){
+      if(e.target === modal) modal.classList.remove('open');
+    });
+  }
+
+  /* ===== BUYURTMA — DJANGO API GA YUBORISH ===== */
+  var modalBtn = document.getElementById('modalBtn');
+  if(modalBtn){
+    modalBtn.addEventListener('click', function(){
+      var name  = document.getElementById('modalName').value.trim();
+      var phone = document.getElementById('modalPhone').value.trim();
+      if(!name){
+        document.getElementById('modalName').style.borderColor = '#e74c3c';
+        document.getElementById('modalName').focus();
+        return;
+      }
+      if(!phone || phone.length < 7){
+        document.getElementById('modalPhone').style.borderColor = '#e74c3c';
+        document.getElementById('modalPhone').focus();
+        return;
+      }
+
+      modalBtn.disabled = true;
+      modalBtn.textContent = '⏳ Yuborilmoqda...';
+
+      fetch('/api/order/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({name: name, phone: phone, discount: selectedDiscount})
+      })
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        document.getElementById('modalForm').style.display    = 'none';
+        document.getElementById('modalSuccess').style.display = 'block';
+      })
+      .catch(function(){
+        document.getElementById('modalForm').style.display    = 'none';
+        document.getElementById('modalSuccess').style.display = 'block';
+      });
+    });
+    ['modalName','modalPhone'].forEach(function(fid){
+      var el = document.getElementById(fid);
+      if(el) el.addEventListener('input', function(){ this.style.borderColor = '#e0e0e0'; });
+    });
+  }
+
+  /* ===== COUNTDOWN ===== */
+  (function(){
+    var saved = sessionStorage.getItem('cd_end');
+    var end;
+    if(saved){ end = parseInt(saved); }
+    else {
+      end = Date.now() + (2*3600 + 47*60 + 33) * 1000;
+      sessionStorage.setItem('cd_end', end);
+    }
+    function pad(n){ return n < 10 ? '0'+n : ''+n; }
+    function tick(){
+      var diff = Math.max(0, Math.floor((end - Date.now()) / 1000));
+      var h = Math.floor(diff / 3600);
+      var m = Math.floor((diff % 3600) / 60);
+      var s = diff % 60;
+      var elH = document.getElementById('cd-h');
+      var elM = document.getElementById('cd-m');
+      var elS = document.getElementById('cd-s');
+      if(elH) elH.textContent = pad(h);
+      if(elM) elM.textContent = pad(m);
+      if(elS) elS.textContent = pad(s);
+      if(diff > 0) setTimeout(tick, 1000);
+    }
+    tick();
+  })();
+
+  /* ===== ZAXIRA ===== */
+  (function(){
+    var baseCount = 12;
+    var saved = sessionStorage.getItem('stock');
+    var count = saved ? parseInt(saved) : baseCount;
+    function updateStock(){
+      var el = document.getElementById('stock-num');
+      var bar = document.getElementById('stock-bar');
+      if(el) el.textContent = count;
+      if(bar) bar.style.width = Math.round((count / 80) * 100) + '%';
+    }
+    updateStock();
+    function decrease(){
+      if(count > 3){
+        count--;
+        sessionStorage.setItem('stock', count);
+        updateStock();
+      }
+      setTimeout(decrease, 25000 + Math.random() * 20000);
+    }
+    setTimeout(decrease, 30000);
+  })();
+
+  /* ===== JONLI BILDIRISHNOMA ===== */
+  (function(){
+    var names = [
+      'Alisher T.','Bobur M.','Sardor K.','Jasur A.','Sherzod N.',
+      'Ulugbek R.','Firdavs O.','Dilshod H.','Nodir B.','Mirzo T.',
+      'Akbar Y.','Sanjar U.','Eldor P.','Ravshan S.','Kamol I.'
+    ];
+    var cities = [
+      'Toshkent','Samarqand','Buxoro','Namangan','Andijon',
+      "Farg'ona",'Qarshi','Nukus','Jizzax','Navoiy'
+    ];
+    var times = ['1 daqiqa','2 daqiqa','3 daqiqa','5 daqiqa','7 daqiqa','10 daqiqa'];
+    var el = document.getElementById('social-proof');
+    var elName = document.getElementById('sp-name');
+    var elTime = document.getElementById('sp-time');
+    if(!el) return;
+
+    function show(){
+      var name = names[Math.floor(Math.random()*names.length)];
+      var city = cities[Math.floor(Math.random()*cities.length)];
+      var time = times[Math.floor(Math.random()*times.length)];
+      if(elName) elName.textContent = name + ' — ' + city;
+      if(elTime) elTime.textContent = time + ' oldin';
+      el.classList.add('show');
+      setTimeout(function(){ el.classList.remove('show'); }, 4000);
+      setTimeout(show, 12000 + Math.random()*10000);
+    }
+    setTimeout(show, 4000);
+  })();
+
+})();
+</script>
+</body>
+</html>
