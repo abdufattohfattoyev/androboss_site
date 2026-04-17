@@ -1,7 +1,23 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python -c ' *)"
+      "Bash(python -c ' *)",
+      "Read(//c/Users/Abdufattoh/androboss_site/shop/**)",
+      "Bash(python manage.py makemigrations shop)",
+      "Bash(\"venv/Scripts/python.exe\" manage.py makemigrations shop)",
+      "Bash(cmd.exe *)",
+      "Bash(\"D:\\\\androboss_site\\\\androboss_site\\\\venv\\\\Scripts\\\\python.exe\" manage.py makemigrations shop)",
+      "Bash(\"D:\\\\androboss_site\\\\androboss_site\\\\venv\\\\Scripts\\\\python.exe\" -m pip install Pillow)",
+      "Bash(\"D:\\\\androboss_site\\\\androboss_site\\\\venv\\\\Scripts\\\\python.exe\" manage.py migrate)",
+      "Bash(\"D:\\\\androboss_site\\\\androboss_site\\\\venv\\\\Scripts\\\\python.exe\" manage.py check)",
+      "Bash(\"D:\\\\androboss_site\\\\androboss_site\\\\venv\\\\Scripts\\\\python.exe\" -m pip install whitenoise)",
+      "Bash(\"D:\\\\androboss_site\\\\venv\\\\Scripts\\\\python.exe\" -m pip install whitenoise)",
+      "Bash(\"D:\\\\androboss_site\\\\venv\\\\Scripts\\\\python.exe\" -m pip install whitenoise Pillow)",
+      "Bash(venv/Scripts/python.exe *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8000/)",
+      "Bash(pkill -f \"runserver\")",
+      "Bash(curl *)",
+      "Bash(pkill -f runserver)"
     ]
   }
 }

@@ -7,7 +7,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.utils import timezone
 from datetime import timedelta
 
-from .models import Order, VisitorStat
+from .models import Order, VisitorStat, Review
 from .telegram_utils import notify_new_order
 
 
@@ -19,8 +19,8 @@ def get_client_ip(request):
 
 
 def landing(request):
-    """Asosiy landing page."""
-    return render(request, 'shop/index.html')
+    reviews = Review.objects.filter(is_active=True).prefetch_related('media')
+    return render(request, 'shop/index.html', {'reviews': reviews})
 
 
 @csrf_exempt

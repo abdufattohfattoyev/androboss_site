@@ -929,166 +929,103 @@
 </div>
 </div>
 </div>
-<div class="commit">
-<div class="comTitle">ШАРҲЛАР <span class="review-count">(25)</span></div>
-<div class="reviews-list">
-<div class="review-card">
-<div class="review-header">
-<div class="review-avatar-wrap"><img alt="Рустамова Шанхоза" class="review-avatar" src="{% static 'shop/images/15copy-14copy-482-63267c57ef7d54caadfde58e64e9b3bc.jpg' %}"/></div>
-<div class="review-meta">
-<span class="review-name">Рустамова Шанхоза</span>
-<div class="review-rating">
-<span class="stars">★★★★★<span class="stars-empty"></span></span>
-<span class="review-date">14.04.2026</span>
+<div class="reviews-section">
+  <div class="reviews-header">
+    <h2 class="reviews-title">ШАРҲЛАР</h2>
+    <span class="reviews-count-badge">{{ reviews|length }} ta sharh</span>
+  </div>
+
+  <div class="reviews-list-new">
+    {% for review in reviews %}
+    <div class="rv-card">
+
+      <!-- Profil header -->
+      <div class="rv-header">
+        <div class="rv-avatar-wrap">
+          {% if review.avatar %}
+            <img class="rv-avatar-img" src="{{ review.avatar.url }}" alt="{{ review.full_name }}"/>
+          {% else %}
+            <div class="rv-avatar-initials">{{ review.initials }}</div>
+          {% endif %}
+        </div>
+        <div class="rv-meta">
+          <span class="rv-name">{{ review.full_name }}</span>
+          <div class="rv-rating-row">
+            <span class="rv-stars">
+              {% for i in "12345" %}
+                {% if forloop.counter <= review.rating %}
+                  <span class="rv-star filled">★</span>
+                {% else %}
+                  <span class="rv-star empty">★</span>
+                {% endif %}
+              {% endfor %}
+            </span>
+            <span class="rv-date">{{ review.date|date:"d.m.Y" }}</span>
+          </div>
+        </div>
+        <div class="rv-verified" title="Tasdiqlangan sharh">✔</div>
+      </div>
+
+      <!-- Sharh matni -->
+      <p class="rv-text">{{ review.text }}</p>
+
+      <!-- Media -->
+      {% with images=review.media.all %}
+      {% if images %}
+      <div class="rv-media-wrap">
+        {% with imgs=review.media.all|dictsort:"order" %}
+
+        {% comment %} Rasmlar — grid {% endcomment %}
+        <div class="rv-imgs-grid">
+          {% for m in imgs %}
+            {% if m.media_type == 'image' %}
+            <div class="rv-media-img" onclick="openLightbox('{{ m.file.url }}')">
+              <img src="{{ m.file.url }}" alt="Sharh rasmi" loading="lazy"/>
+              <div class="rv-img-overlay"><span>🔍</span></div>
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        {% comment %} Videolar {% endcomment %}
+        {% for m in imgs %}
+          {% if m.media_type == 'video' %}
+          <div class="rv-media-video">
+            <video controls preload="metadata" playsinline>
+              <source src="{{ m.file.url }}"/>
+            </video>
+          </div>
+          {% endif %}
+        {% endfor %}
+
+        {% comment %} Ovoz xabarlari {% endcomment %}
+        {% for m in imgs %}
+          {% if m.media_type == 'audio' %}
+          <div class="rv-audio-wrap">
+            <div class="rv-audio-icon">🎵</div>
+            <audio controls preload="none" class="rv-audio-player">
+              <source src="{{ m.file.url }}"/>
+            </audio>
+          </div>
+          {% endif %}
+        {% endfor %}
+
+        {% endwith %}
+      </div>
+      {% endif %}
+      {% endwith %}
+
+    </div>
+    {% empty %}
+    <p style="text-align:center;color:#aaa;padding:30px;">Hali sharhlar yo'q.</p>
+    {% endfor %}
+  </div>
 </div>
-</div>
-</div>
-<p class="review-text">Бу восита ҳақида ахборот учун сизлардан миннатдорман. Эрим кўпдан бери бу муаммога учраган, сўнгги бор икки йил аввал жинсий алоқа қилгандик. Курс буюртирдим.</p>
-</div>
-<div class="review-card">
-<div class="review-header">
-<div class="review-avatar-wrap"><img alt="Усманов Бек" class="review-avatar" src="{% static 'shop/images/ava_08.jpg' %}"/></div>
-<div class="review-meta">
-<span class="review-name">Усманов Бек</span>
-<div class="review-rating">
-<span class="stars">★★★★★<span class="stars-empty"></span></span>
-<span class="review-date">14.04.2026</span>
-</div>
-</div>
-</div>
-<p class="review-text">Маъқуллайман! AndroBoss — импотенцияга қарши зўр восита!</p>
-</div>
-<div class="review-card">
-<div class="review-header">
-<div class="review-avatar-wrap"><img alt="Махмудов Отабек" class="review-avatar" src="{% static 'shop/images/17copy-16copy-576-63267c57ef7d54caadfde58e64e9b3bc.jpg' %}"/></div>
-<div class="review-meta">
-<span class="review-name">Махмудов Отабек</span>
-<div class="review-rating">
-<span class="stars">★★★★★<span class="stars-empty"></span></span>
-<span class="review-date">13.04.2026</span>
-</div>
-</div>
-</div>
-<p class="review-text">AndroBoss яхши капсулалар. Менга зўр ёрдам берди, энди потенция михдек.</p>
-</div>
-<div class="review-card">
-<div class="review-header">
-<div class="review-avatar-wrap"><img alt="Хайдаров Сардор" class="review-avatar" src="{% static 'shop/images/17copy-16copy-458-63267c57ef7d54caadfde58e64e9b3bc.jpg' %}"/></div>
-<div class="review-meta">
-<span class="review-name">Хайдаров Сардор</span>
-<div class="review-rating">
-<span class="stars">★★★★★<span class="stars-empty"></span></span>
-<span class="review-date">12.04.2026</span>
-</div>
-</div>
-</div>
-<p class="review-text">Раҳмат, восита ростданам зўр ёрдам берди! Даволанишни чўзманг, ҳозироқ бу муаммодан халос бўлинг.</p>
-</div>
-<div class="review-card">
-<div class="review-header">
-<div class="review-avatar-wrap"><img alt="Ислом Хаятов" class="review-avatar" src="{% static 'shop/images/user_9.png' %}"/></div>
-<div class="review-meta">
-<span class="review-name">Ислом Хаятов</span>
-<div class="review-rating">
-<span class="stars">★★★★★<span class="stars-empty"></span></span>
-<span class="review-date">12.04.2026</span>
-</div>
-</div>
-</div>
-<p class="review-text">Мен ҳам буюртма қолдирдим. 50% skidkada, олинглар!</p>
-</div>
-<div class="review-card">
-<div class="review-header">
-<div class="review-avatar-wrap"><img alt="Нодир Абдуллаев" class="review-avatar" src="{% static 'shop/images/user_8.jpg' %}"/></div>
-<div class="review-meta">
-<span class="review-name">Нодир Абдуллаев</span>
-<div class="review-rating">
-<span class="stars">★★★★<span class="stars-empty">☆</span></span>
-<span class="review-date">11.04.2026</span>
-</div>
-</div>
-</div>
-<p class="review-text">AndroBoss ни қандай буюртирса бўлади? Расмий сайтни тополмаяпман.</p>
-</div>
-<div class="review-card">
-<div class="review-header">
-<div class="review-avatar-wrap"><img alt="Якубов Эргаш" class="review-avatar" src="{% static 'shop/images/17copy-16copy-859-63267c57ef7d54caadfde58e64e9b3bc.jpg' %}"/></div>
-<div class="review-meta">
-<span class="review-name">Якубов Эргаш</span>
-<div class="review-rating">
-<span class="stars">★★★★★<span class="stars-empty"></span></span>
-<span class="review-date">09.04.2026</span>
-</div>
-</div>
-</div>
-<p class="review-text">Мен ҳам AndroBoss учун ишлаб чиқарувчи сайтида буюртма бергандим. Жўнатма уч кундаёқ келди.</p>
-</div>
-<div class="review-card">
-<div class="review-header">
-<div class="review-avatar-wrap"><img alt="Балтаева Шоира" class="review-avatar" src="{% static 'shop/images/15copy-14copy-417-63267c57ef7d54caadfde58e64e9b3bc.jpg' %}"/></div>
-<div class="review-meta">
-<span class="review-name">Балтаева Шоира</span>
-<div class="review-rating">
-<span class="stars">★★★★★<span class="stars-empty"></span></span>
-<span class="review-date">09.04.2026</span>
-</div>
-</div>
-</div>
-<p class="review-text">AndroBoss учун қандай қилиб буюртма бериш мумкин? Эримга табиий восита олиб бермоқчийдим.</p>
-</div>
-<div class="review-card">
-<div class="review-header">
-<div class="review-avatar-wrap"><img alt="Ахраров Бек" class="review-avatar" src="{% static 'shop/images/17copy-16copy-403-63267c57ef7d54caadfde58e64e9b3bc.jpg' %}"/></div>
-<div class="review-meta">
-<span class="review-name">Ахраров Бек</span>
-<div class="review-rating">
-<span class="stars">★★★★★<span class="stars-empty"></span></span>
-<span class="review-date">08.04.2026</span>
-</div>
-</div>
-</div>
-<p class="review-text">AndroBoss учун раҳмат! Синаб кўрдим, потенция тикланди!</p>
-</div>
-<div class="review-card">
-<div class="review-header">
-<div class="review-avatar-wrap"><img alt="Бахтиер Турсунов" class="review-avatar" src="{% static 'shop/images/m3.jpg' %}"/></div>
-<div class="review-meta">
-<span class="review-name">Бахтиер Турсунов</span>
-<div class="review-rating">
-<span class="stars">★★★★★<span class="stars-empty"></span></span>
-<span class="review-date">02.04.2026</span>
-</div>
-</div>
-</div>
-<p class="review-text">Мен уни бир ойдан бери қабул қиламан. Жинсий олатим яхши кўрина бошлади!</p>
-</div>
-<div class="review-card">
-<div class="review-header">
-<div class="review-avatar-wrap"><img alt="Абдулазиз Нуридинов" class="review-avatar" src="{% static 'shop/images/m1.jpg' %}"/></div>
-<div class="review-meta">
-<span class="review-name">Абдулазиз Нуридинов</span>
-<div class="review-rating">
-<span class="stars">★★★★★<span class="stars-empty"></span></span>
-<span class="review-date">28.03.2026</span>
-</div>
-</div>
-</div>
-<p class="review-text">Мақолани ўқиб, сайтдаги шакл орқали буюртиришга қарор қилдим. Препарат жуда тез келди. Катта раҳмат!</p>
-</div>
-<div class="review-card">
-<div class="review-header">
-<div class="review-avatar-wrap"><img alt="Гульнора Шарипова" class="review-avatar" src="{% static 'shop/images/w4.jpg' %}"/></div>
-<div class="review-meta">
-<span class="review-name">Гульнора Шарипова</span>
-<div class="review-rating">
-<span class="stars">★★★★★<span class="stars-empty"></span></span>
-<span class="review-date">27.03.2026</span>
-</div>
-</div>
-</div>
-<p class="review-text">Препарат учун расмий сайтда буюртма бериб тўғри иш қилибсиз, чунки у ҳозир фақат дастур доирасида тарқатилмоқда.</p>
-</div>
-</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <img id="lb-img" src="" alt=""/>
 </div>
 </div>
 </div>
@@ -1469,6 +1406,22 @@
   })();
 
 })();
+
+/* ===== LIGHTBOX ===== */
+function openLightbox(url){
+  var lb = document.getElementById('lightbox');
+  var img = document.getElementById('lb-img');
+  img.src = url;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeLightbox();
+});
 </script>
 </body>
 </html>

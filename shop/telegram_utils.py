@@ -2,28 +2,23 @@ import requests
 from django.conf import settings
 
 
-def send_telegram_message(text: str) -> bool:
-    """Telegram botga xabar yuboradi. Muvaffaqiyatli bo'lsa True qaytaradi."""
+def send_telegram_message(chat_id: str, text: str) -> bool:
     token = settings.TELEGRAM_BOT_TOKEN
-    chat_id = settings.TELEGRAM_CHAT_ID
-
     if not token or not chat_id:
         return False
-
-    url = f'https://api.telegram.org/bot{token}/sendMessage'
     try:
-        resp = requests.post(url, json={
-            'chat_id': chat_id,
-            'text': text,
-            'parse_mode': 'HTML',
-        }, timeout=10)
+        resp = requests.post(
+            f'https://api.telegram.org/bot{token}/sendMessage',
+            json={'chat_id': chat_id, 'text': text, 'parse_mode': 'HTML'},
+            timeout=10,
+        )
         return resp.status_code == 200
     except Exception:
         return False
 
 
-def notify_new_order(order) -> bool:
-    """Yangi buyurtma haqida Telegram xabar yuboradi."""
+def notify_new_order(order) -> None:
+    """Barcha faol Telegram adminlarga yangi buyurtma haqida xabar yuboradi."""
     text = (
         f'🛒 <b>YANGI BUYURTMA!</b>\n'
         f'━━━━━━━━━━━━━━━\n'
@@ -35,4 +30,14 @@ def notify_new_order(order) -> bool:
         f'━━━━━━━━━━━━━━━\n'
         f'#buyurtma #androboss'
     )
-    return send_telegram_message(text)
+
+    try:
+        from shop.models import TelegramAdmin
+        admins = TelegramAdmin.objects.filter(is_active=True)
+        for admin in admins:
+            send_telegram_message(admin.chat_id, text)
+    except Exception:
+        # Fallback: .env dagi TELEGRAM_CHAT_ID ga yuborish
+        fallback = settings.TELEGRAM_CHAT_ID
+        if fallback:
+            send_telegram_message(fallback, text)

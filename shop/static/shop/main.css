@@ -991,3 +991,323 @@ img[src*="cert"] {
 }
 
 /* (doors popup — yuqorida DOORS GAME SECTION da) */
+
+/* ============================================================
+   YANGI SHARHLAR BLOKI
+   ============================================================ */
+
+.reviews-section {
+  max-width: 720px;
+  margin: 32px auto 0;
+  padding: 0 12px 40px;
+}
+
+.reviews-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.reviews-title {
+  font-size: clamp(18px, 5vw, 24px);
+  font-weight: 900;
+  color: #1a1a2e;
+  font-family: Arial, sans-serif;
+}
+
+.reviews-count-badge {
+  background: #e74c3c;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.reviews-list-new {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* --- Karta --- */
+.rv-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 18px 16px 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  transition: box-shadow 0.2s;
+  border: 1px solid #f0f0f0;
+}
+.rv-card:hover {
+  box-shadow: 0 6px 28px rgba(0,0,0,0.13);
+}
+
+/* --- Header: avatar + meta + verified --- */
+.rv-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.rv-avatar-wrap {
+  flex-shrink: 0;
+}
+
+.rv-avatar-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f0f0f0;
+  display: block;
+}
+
+.rv-avatar-initials {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  flex-shrink: 0;
+}
+
+.rv-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.rv-name {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a2e;
+  font-family: Arial, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rv-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+}
+
+.rv-stars {
+  display: flex;
+  gap: 1px;
+}
+
+.rv-star {
+  font-size: 14px;
+  line-height: 1;
+}
+.rv-star.filled { color: #f1c40f; }
+.rv-star.empty  { color: #e0e0e0; }
+
+.rv-date {
+  font-size: 12px;
+  color: #aaa;
+  font-family: Arial, sans-serif;
+}
+
+.rv-verified {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  background: #27ae60;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* --- Sharh matni --- */
+.rv-text {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+  font-family: Arial, sans-serif;
+  margin: 0 0 12px;
+}
+
+/* --- Media wrap --- */
+.rv-media-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* ---- Rasmlar grid ---- */
+.rv-imgs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* 1 ta rasm — to'liq kenglik */
+.rv-imgs-grid:has(.rv-media-img:only-child) {
+  grid-template-columns: 1fr;
+}
+
+/* 1 ta rasm bo'lganda balandroq */
+.rv-imgs-grid .rv-media-img:only-child img {
+  max-height: 260px;
+}
+
+/* 3 ta: birinchisi to'liq qator */
+.rv-imgs-grid:has(.rv-media-img:nth-child(3)):not(:has(.rv-media-img:nth-child(4))) .rv-media-img:first-child {
+  grid-column: 1 / -1;
+}
+
+/* Rasm item */
+.rv-media-img {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: #f0f0f0;
+  border-radius: 0;
+}
+
+.rv-media-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.2s;
+}
+
+.rv-media-img:hover img {
+  transform: scale(1.02);
+}
+
+.rv-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  opacity: 0;
+  transition: opacity 0.2s, background 0.2s;
+}
+
+.rv-media-img:hover .rv-img-overlay {
+  opacity: 1;
+  background: rgba(0,0,0,0.22);
+}
+
+/* Video */
+.rv-media-video {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+
+.rv-media-video video {
+  width: 100%;
+  max-height: 300px;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Audio */
+.rv-audio-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f8f8f8;
+  border-radius: 40px;
+  padding: 8px 14px 8px 10px;
+  border: 1px solid #eee;
+}
+
+.rv-audio-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.rv-audio-player {
+  flex: 1;
+  height: 36px;
+  min-width: 0;
+}
+
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: rgba(0,0,0,0.92);
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  cursor: zoom-out;
+}
+#lightbox.open {
+  display: flex;
+}
+#lb-img {
+  max-width: 100%;
+  max-height: 92vh;
+  border-radius: 10px;
+  box-shadow: 0 0 60px rgba(0,0,0,0.6);
+  object-fit: contain;
+  cursor: default;
+}
+.lb-close {
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  z-index: 1000000;
+  transition: background 0.2s;
+}
+.lb-close:hover { background: rgba(255,255,255,0.3); }
+
+/* ============================================================
+   RESPONSIVE — SHARHLAR
+   ============================================================ */
+@media (max-width: 480px) {
+  .rv-card { padding: 14px 12px 12px; border-radius: 14px; }
+  .rv-avatar-img,
+  .rv-avatar-initials { width: 44px; height: 44px; }
+  .rv-avatar-initials { font-size: 17px; }
+  .rv-name { font-size: 14px; }
+  .rv-text { font-size: 13px; }
+  .rv-media-img img { height: auto; }
+  .rv-imgs-grid { gap: 4px; }
+  .rv-audio-player { height: 32px; }
+}
+
