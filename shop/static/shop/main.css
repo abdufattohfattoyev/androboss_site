@@ -1157,19 +1157,29 @@ img[src*="cert"] {
 .rv-imgs-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 6px;
+  gap: 4px;
   border-radius: 12px;
   overflow: hidden;
+  width: 100%;
 }
 
-/* 1 ta rasm — to'liq kenglik */
+/* 1 ta rasm — to'liq kenglik, responsive */
 .rv-imgs-grid:has(.rv-media-img:only-child) {
   grid-template-columns: 1fr;
 }
 
-/* 1 ta rasm bo'lganda balandroq */
+.rv-imgs-grid .rv-media-img:only-child {
+  width: 100%;
+  border-radius: 12px;
+}
+
 .rv-imgs-grid .rv-media-img:only-child img {
-  max-height: 260px;
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #f8f8f8;
 }
 
 /* 3 ta: birinchisi to'liq qator */
@@ -1184,6 +1194,7 @@ img[src*="cert"] {
   cursor: pointer;
   background: #f0f0f0;
   border-radius: 0;
+  width: 100%;
 }
 
 .rv-media-img img {
