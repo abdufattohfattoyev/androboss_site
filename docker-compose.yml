@@ -5,7 +5,7 @@ services:
     build: .
     container_name: androboss
     volumes:
-      - ./db.sqlite3:/app/db.sqlite3
+      - .:/app
       - media_volume:/app/media
     env_file:
       - .env
