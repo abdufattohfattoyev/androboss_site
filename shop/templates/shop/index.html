@@ -862,7 +862,7 @@
 <div class="stock-wrap">
   <div class="stock-top">
     <span class="stock-label">🔥 Zaxira tugayapti!</span>
-    <span class="stock-count">Faqat <b id="stock-num">12</b> ta qoldi</span>
+    <span class="stock-count">Faqat <b id="stock-num">47</b> ta qoldi</span>
   </div>
   <div class="stock-bar-bg">
     <div class="stock-bar-fill" id="stock-bar" style="width:18%"></div>
@@ -1354,9 +1354,11 @@
 
   /* ===== ZAXIRA ===== */
   (function(){
-    var baseCount = 12;
+    var baseCount = 47;
+    var minCount  = 20;
     var saved = sessionStorage.getItem('stock');
     var count = saved ? parseInt(saved) : baseCount;
+    if(count < minCount) count = minCount;
     function updateStock(){
       var el = document.getElementById('stock-num');
       var bar = document.getElementById('stock-bar');
@@ -1365,14 +1367,14 @@
     }
     updateStock();
     function decrease(){
-      if(count > 3){
+      if(count > minCount){
         count--;
         sessionStorage.setItem('stock', count);
         updateStock();
       }
-      setTimeout(decrease, 25000 + Math.random() * 20000);
+      setTimeout(decrease, 45000 + Math.random() * 30000);
     }
-    setTimeout(decrease, 30000);
+    setTimeout(decrease, 60000);
   })();
 
   /* ===== JONLI BILDIRISHNOMA ===== */
