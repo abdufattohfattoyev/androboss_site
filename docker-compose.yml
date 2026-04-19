@@ -6,7 +6,7 @@ services:
     container_name: androboss
     volumes:
       - .:/app
-      - media_volume:/app/media
+      - samsebweb_androboss_media:/app/media
     env_file:
       - .env
     networks:
@@ -14,7 +14,8 @@ services:
     restart: unless-stopped
 
 volumes:
-  media_volume:
+  samsebweb_androboss_media:
+    external: true
 
 networks:
   samsebweb_app-network:
