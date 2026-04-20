@@ -21,7 +21,8 @@
       "Bash(ssh root@194.146.13.26 \"systemctl list-units --type=service | grep -i 'andro\\\\|gunicorn\\\\|django\\\\|uwsgi'\")",
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(xxd /d/samsebweb/requirements.txt)"
     ]
   }
 }

@@ -862,7 +862,7 @@
 <div class="stock-wrap">
   <div class="stock-top">
     <span class="stock-label">🔥 Zaxira tugayapti!</span>
-    <span class="stock-count">Faqat <b id="stock-num">47</b> ta qoldi</span>
+    <span class="stock-count">Faqat <b id="stock-num">27</b> ta qoldi</span>
   </div>
   <div class="stock-bar-bg">
     <div class="stock-bar-fill" id="stock-bar" style="width:18%"></div>
@@ -1354,8 +1354,8 @@
 
   /* ===== ZAXIRA ===== */
   (function(){
-    var baseCount = 47;
-    var minCount  = 20;
+    var baseCount = 27;
+    var minCount  = 15;
     var saved = sessionStorage.getItem('stock');
     var count = saved ? parseInt(saved) : baseCount;
     if(count < minCount) count = minCount;
