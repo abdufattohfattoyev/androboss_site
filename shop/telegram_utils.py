@@ -31,13 +31,17 @@ def notify_new_order(order) -> None:
         f'#buyurtma #androboss'
     )
 
+    sent = False
     try:
         from shop.models import TelegramAdmin
         admins = TelegramAdmin.objects.filter(is_active=True)
         for admin in admins:
             send_telegram_message(admin.chat_id, text)
+            sent = True
     except Exception:
-        # Fallback: .env dagi TELEGRAM_CHAT_ID ga yuborish
+        pass
+
+    if not sent:
         fallback = settings.TELEGRAM_CHAT_ID
         if fallback:
             send_telegram_message(fallback, text)
