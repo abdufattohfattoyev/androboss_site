@@ -1321,6 +1321,11 @@ fbq('track', 'PageView');
         return;
       }
 
+      if(typeof fbq === 'function'){
+        fbq('track', 'Lead');
+        fbq('track', 'CompleteRegistration');
+      }
+
       modalBtn.disabled = true;
       modalBtn.textContent = '⏳ Yuborilmoqda...';
 
@@ -1330,21 +1335,13 @@ fbq('track', 'PageView');
         body: JSON.stringify({name: name, phone: phone, discount: selectedDiscount})
       })
       .then(function(r){ return r.json(); })
-      .then(function(data){
+      .then(function(){
         document.getElementById('modalForm').style.display    = 'none';
         document.getElementById('modalSuccess').style.display = 'block';
-        if(typeof fbq === 'function'){
-          fbq('track', 'Lead');
-          fbq('track', 'CompleteRegistration');
-        }
       })
       .catch(function(){
         document.getElementById('modalForm').style.display    = 'none';
         document.getElementById('modalSuccess').style.display = 'block';
-        if(typeof fbq === 'function'){
-          fbq('track', 'Lead');
-          fbq('track', 'CompleteRegistration');
-        }
       });
     });
     ['modalName','modalPhone'].forEach(function(fid){
